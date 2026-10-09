@@ -27,9 +27,26 @@ if (!process.env.QUESTION_BANK_FILE) {
 const { createApp } = require('../src/app');
 
 let cached = null;
+let bootError = null;
 function getApp() {
-  if (!cached) cached = createApp();
+  if (!cached && !bootError) {
+    try {
+      cached = createApp();
+    } catch (err) {
+      bootError = err;
+      console.error('[NeuroMetric] Falha no boot:', err && err.stack || err);
+    }
+  }
   return cached;
 }
 
-module.exports = (req, res) => getApp()(req, res);
+module.exports = (req, res) => {
+  const app = getApp();
+  if (!app) {
+    res.statusCode = 500;
+    res.setHeader('content-type', 'application/json');
+    res.end(JSON.stringify({ erro: 'boot_falhou', mensagem: String((bootError && bootError.message) || bootError) }));
+    return;
+  }
+  return app(req, res);
+};
