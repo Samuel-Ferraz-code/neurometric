@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--
+  NeuroMetric — Tela de questões e memorização
+  Não havia export desta tela no Google Stitch; ela foi criada seguindo o DESIGN.md
+  (área de foco de 840px, seletores circulares, trilha de progresso com gradiente
+  e cronômetro em pílula escura). Por decisão de projeto, não exibe o cabeçalho
+  de navegação durante a avaliação.
+
+  Os cronômetros exibidos aqui são apenas visuais: os horários oficiais
+  (início da avaliação, início de cada questão e confirmação) são gravados no servidor.
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avaliação em andamento — NeuroMetric</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page quiz-page">
+  <main class="quiz-shell">
+
+    <!-- Barra superior: marca e cronômetros -->
+    <div class="quiz-topbar">
+      <div class="quiz-brand">
+        <span class="brand-mark brand-mark--sm">
+          <span class="material-symbols-outlined icon-base">psychology</span>
+        </span>
+        <span class="quiz-brand__name">NeuroMetric</span>
+      </div>
+
+      <div class="quiz-timers">
+        <div class="timer-badge" title="Tempo total desde a primeira questão">
+          <span class="material-symbols-outlined icon-18">schedule</span>
+          <span class="timer-badge__text">
+            <span class="timer-badge__label">Tempo geral</span>
+            <span class="timer-badge__value" id="timer-total">00:00:00</span>
+          </span>
+        </div>
+        <div class="timer-badge timer-badge--light" title="Tempo nesta questão">
+          <span class="material-symbols-outlined icon-18">timer</span>
+          <span class="timer-badge__text">
+            <span class="timer-badge__label">Tempo da questão</span>
+            <span class="timer-badge__value" id="timer-question">00:00</span>
+          </span>
+        </div>
+        <button class="btn-ghost" id="btn-finish" type="button" title="Encerrar a avaliação agora">
+          <span class="material-symbols-outlined icon-18">logout</span>
+          <span>Encerrar</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Progresso -->
+    <div class="quiz-progress">
+      <div class="quiz-progress__row">
+        <span class="quiz-progress__label">Questão <strong id="progress-current">–</strong> de <strong id="progress-total">–</strong></span>
+        <span class="quiz-progress__label" id="progress-percent">0% concluído</span>
+      </div>
+      <div class="progress-track" role="progressbar" aria-label="Progresso da avaliação" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
+
+    <!-- Estado: carregando / erro -->
+    <section class="question-card quiz-state" id="view-state">
+      <span class="material-symbols-outlined icon-26 anim-spin" id="state-icon">progress_activity</span>
+      <p id="state-text">Carregando a avaliação...</p>
+      <a class="btn-confirm" id="state-action" href="iniciar-teste.html" hidden>Voltar</a>
+    </section>
+
+    <!-- Estado: memorização -->
+    <section class="question-card memo-card" id="view-memo" hidden aria-live="polite">
+      <span class="tag-stat">Memorização</span>
+      <h1 class="memo-card__title">Memorize a sequência abaixo</h1>
+      <div class="memo-digits" id="memo-digits"></div>
+      <div class="progress-track"><div class="progress-fill" id="memo-fill"></div></div>
+      <p class="text-body-sm">A sequência some em <strong id="memo-seconds">0</strong> s. Depois, responda à pergunta.</p>
+    </section>
+
+    <!-- Estado: questão -->
+    <section class="question-card" id="view-question" hidden>
+      <div class="question-card__meta">
+        <span class="tag-stat" id="q-category">Categoria</span>
+        <span class="tag-neutral" id="q-number">Questão 1</span>
+      </div>
+
+      <h1 class="question-card__statement" id="q-statement" tabindex="-1"></h1>
+      <figure class="question-card__figure" id="q-figure" hidden>
+        <img id="q-image" alt="Figura da questão">
+      </figure>
+
+      <form id="q-form" novalidate>
+        <fieldset class="options" id="q-options">
+          <legend class="sr-only">Alternativas</legend>
+        </fieldset>
+
+        <div class="quiz-actions">
+          <p class="quiz-actions__note">Use as teclas A–E para escolher e Enter para confirmar. A resposta confirmada não pode ser alterada.</p>
+          <button class="btn-confirm" id="btn-confirm" type="submit" disabled>
+            <span>Confirmar resposta</span>
+            <span class="material-symbols-outlined icon-18">arrow_forward</span>
+          </button>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Confirmação para encerrar antes do fim -->
+  <dialog class="dialog" id="dialog-finish">
+    <h2>Encerrar a avaliação?</h2>
+    <p>As questões ainda não respondidas serão registradas como não respondidas e valem 0 ponto. Esta ação não pode ser desfeita.</p>
+    <div class="dialog__actions">
+      <button class="btn-outline" type="button" id="dialog-cancel">Continuar respondendo</button>
+      <button class="btn-danger" type="button" id="dialog-confirm">Encerrar</button>
+    </div>
+  </dialog>
+
+  <script src="js/api.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/teste.js"></script>
+</body>
+</html>

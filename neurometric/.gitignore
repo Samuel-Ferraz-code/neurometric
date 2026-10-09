@@ -1,0 +1,24 @@
+# Dependências
+node_modules/
+
+# Segredos e configuração local
+.env
+.env.*
+!.env.example
+
+# Bancos SQLite (contêm dados pessoais de usuários)
+data/*.sqlite
+data/*.sqlite-*
+*.db
+
+# Relatórios gerados
+docs/relatorio-validacao-banco.md
+
+# Sistema e editores
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+*.log
+npm-debug.log*

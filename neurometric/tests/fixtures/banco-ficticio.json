@@ -1,0 +1,327 @@
+{
+  "versao": "ficticio-testes-v1",
+  "fonte": "BANCO FICTÍCIO — apenas para testes automatizados e prévias. NÃO é o conteúdo do documento Questões Qi_so10.docx.",
+  "questoes": [
+    {
+      "id": 1,
+      "ordem": 1,
+      "categoria": "Raciocínio quantitativo",
+      "enunciado": "[FICTÍCIA] Quanto é 7 + 5?",
+      "alternativas": [
+        {
+          "letra": "A",
+          "texto": "10"
+        },
+        {
+          "letra": "B",
+          "texto": "11"
+        },
+        {
+          "letra": "C",
+          "texto": "13"
+        },
+        {
+          "letra": "D",
+          "texto": "14"
+        },
+        {
+          "letra": "E",
+          "texto": "12"
+        }
+      ],
+      "resposta": "E",
+      "explicacao": "7 + 5 = 12."
+    },
+    {
+      "id": 2,
+      "ordem": 2,
+      "categoria": "Sequências numéricas",
+      "enunciado": "[FICTÍCIA] Qual o próximo número: 2, 4, 6, 8, ...?",
+      "alternativas": [
+        {
+          "letra": "A",
+          "texto": "9"
+        },
+        {
+          "letra": "B",
+          "texto": "10"
+        },
+        {
+          "letra": "C",
+          "texto": "11"
+        },
+        {
+          "letra": "D",
+          "texto": "12"
+        },
+        {
+          "letra": "E",
+          "texto": "14"
+        }
+      ],
+      "resposta": "B",
+      "explicacao": "A sequência soma 2 a cada termo."
+    },
+    {
+      "id": 3,
+      "ordem": 3,
+      "categoria": "Analogias",
+      "enunciado": "[FICTÍCIA] Dia está para noite assim como quente está para:",
+      "alternativas": [
+        {
+          "letra": "A",
+          "texto": "morno"
+        },
+        {
+          "letra": "B",
+          "texto": "sol"
+        },
+        {
+          "letra": "C",
+          "texto": "frio"
+        },
+        {
+          "letra": "D",
+          "texto": "verão"
+        },
+        {
+          "letra": "E",
+          "texto": "fogo"
+        }
+      ],
+      "resposta": "C",
+      "explicacao": "Relação de opostos."
+    },
+    {
+      "id": 4,
+      "ordem": 4,
+      "categoria": "Lógica dedutiva",
+      "enunciado": "[FICTÍCIA] Todo A é B. X é A. Logo:",
+      "alternativas": [
+        {
+          "letra": "A",
+          "texto": "X é B"
+        },
+        {
+          "letra": "B",
+          "texto": "X não é B"
+        },
+        {
+          "letra": "C",
+          "texto": "Todo B é X"
+        },
+        {
+          "letra": "D",
+          "texto": "Nenhum B é A"
+        },
+        {
+          "letra": "E",
+          "texto": "Nada se conclui"
+        }
+      ],
+      "resposta": "A",
+      "explicacao": "Silogismo direto."
+    },
+    {
+      "id": 5,
+      "ordem": 5,
+      "categoria": "Sequências numéricas",
+      "enunciado": "[FICTÍCIA] Qual o próximo número: 1, 3, 9, 27, ...?",
+      "alternativas": [
+        {
+          "letra": "A",
+          "texto": "30"
+        },
+        {
+          "letra": "B",
+          "texto": "54"
+        },
+        {
+          "letra": "C",
+          "texto": "36"
+        },
+        {
+          "letra": "D",
+          "texto": "81"
+        },
+        {
+          "letra": "E",
+          "texto": "90"
+        }
+      ],
+      "resposta": "D",
+      "explicacao": "Cada termo é multiplicado por 3."
+    },
+    {
+      "id": 6,
+      "ordem": 6,
+      "categoria": "Memória",
+      "enunciado": "[FICTÍCIA] Qual era o terceiro dígito da sequência apresentada?",
+      "alternativas": [
+        {
+          "letra": "A",
+          "texto": "5"
+        },
+        {
+          "letra": "B",
+          "texto": "2"
+        },
+        {
+          "letra": "C",
+          "texto": "9"
+        },
+        {
+          "letra": "D",
+          "texto": "4"
+        },
+        {
+          "letra": "E",
+          "texto": "7"
+        }
+      ],
+      "resposta": "A",
+      "explicacao": "A sequência era 8 1 5 3.",
+      "memorizacao": {
+        "sequencia": "8 1 5 3",
+        "exibir_antes_da_questao": 6,
+        "duracao_segundos": 5
+      }
+    },
+    {
+      "id": 7,
+      "ordem": 7,
+      "categoria": "Padrões e matrizes",
+      "enunciado": "[FICTÍCIA] Qual figura completa a série?",
+      "imagem": "assets/questoes-demo/serie.svg",
+      "alternativas": [
+        {
+          "letra": "A",
+          "texto": "",
+          "imagem": "assets/questoes-demo/triangulo.svg"
+        },
+        {
+          "letra": "B",
+          "texto": "",
+          "imagem": "assets/questoes-demo/quadrado.svg"
+        },
+        {
+          "letra": "C",
+          "texto": "",
+          "imagem": "assets/questoes-demo/losango.svg"
+        },
+        {
+          "letra": "D",
+          "texto": "",
+          "imagem": "assets/questoes-demo/cruz.svg"
+        },
+        {
+          "letra": "E",
+          "texto": "",
+          "imagem": "assets/questoes-demo/estrela.svg"
+        }
+      ],
+      "resposta": "B",
+      "explicacao": "A série alterna círculo e quadrado."
+    },
+    {
+      "id": 8,
+      "ordem": 8,
+      "categoria": "Raciocínio espacial",
+      "enunciado": "[FICTÍCIA] Qual figura tem exatamente três lados?",
+      "alternativas": [
+        {
+          "letra": "A",
+          "texto": "",
+          "imagem": "assets/questoes-demo/circulo.svg"
+        },
+        {
+          "letra": "B",
+          "texto": "",
+          "imagem": "assets/questoes-demo/quadrado.svg"
+        },
+        {
+          "letra": "C",
+          "texto": "",
+          "imagem": "assets/questoes-demo/triangulo.svg"
+        },
+        {
+          "letra": "D",
+          "texto": "",
+          "imagem": "assets/questoes-demo/losango.svg"
+        },
+        {
+          "letra": "E",
+          "texto": "",
+          "imagem": "assets/questoes-demo/estrela.svg"
+        }
+      ],
+      "resposta": "C",
+      "explicacao": "O triângulo tem três lados."
+    },
+    {
+      "id": 9,
+      "ordem": 9,
+      "categoria": "Classificação",
+      "enunciado": "[FICTÍCIA] Qual item não pertence ao grupo?",
+      "alternativas": [
+        {
+          "letra": "A",
+          "texto": "maçã"
+        },
+        {
+          "letra": "B",
+          "texto": "banana"
+        },
+        {
+          "letra": "C",
+          "texto": "uva"
+        },
+        {
+          "letra": "D",
+          "texto": "cenoura"
+        },
+        {
+          "letra": "E",
+          "texto": "pera"
+        }
+      ],
+      "resposta": "D",
+      "explicacao": "Cenoura não é fruta."
+    },
+    {
+      "id": 10,
+      "ordem": 10,
+      "categoria": "Memória",
+      "enunciado": "[FICTÍCIA] Qual era o último dígito da sequência apresentada?",
+      "alternativas": [
+        {
+          "letra": "A",
+          "texto": "1"
+        },
+        {
+          "letra": "B",
+          "texto": "3"
+        },
+        {
+          "letra": "C",
+          "texto": "5"
+        },
+        {
+          "letra": "D",
+          "texto": "7"
+        },
+        {
+          "letra": "E",
+          "texto": "6"
+        }
+      ],
+      "resposta": "E",
+      "explicacao": "A sequência era 4 2 6.",
+      "memorizacao": {
+        "sequencia": "4 2 6",
+        "exibir_antes_da_questao": 10,
+        "duracao_segundos": 5
+      }
+    }
+  ]
+}

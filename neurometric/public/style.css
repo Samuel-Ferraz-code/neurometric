@@ -1,0 +1,3729 @@
+/* =====================================================================
+   NeuroMetric — Cognitive Lab
+   Folha de estilos principal (CSS externo, importado por todas as páginas)
+
+   Origem: telas exportadas do Google Stitch (Tailwind CSS via CDN).
+   Cada classe utilitária do Tailwind foi convertida para CSS tradicional
+   com os MESMOS valores (cores, espaçamentos, raios, sombras e tipografia
+   do tailwind.config do Stitch), agrupada em classes semânticas.
+
+   Marcadores acadêmicos usados nos comentários:
+     [BM-nn]  → componente com Box Model completo documentado
+                (Content, Padding, Border e Margin com valores explícitos)
+     [FX-nn]  → aplicação de Flexbox documentada
+   A tabela-resumo das 20 aplicações de cada tipo está em docs/RELATORIO.md.
+
+   Índice
+     1.  Tokens de design (variáveis)
+     2.  Reset (equivalente ao "preflight" do Tailwind)
+     3.  Base, ícones e animações
+     4.  Cabeçalho e rodapé do site
+     5.  Autenticação (login, cadastro, recuperação de senha)
+     6.  Página inicial
+     7.  Iniciar teste
+     8.  Tela de questões e memorização
+     9.  Resultados e histórico
+     10. Utilitários de estado
+     11. Responsividade (media queries)
+   ===================================================================== */
+
+
+/* =====================================================================
+   1. TOKENS DE DESIGN — valores do tailwind.config gerado pelo Stitch
+   ===================================================================== */
+:root {
+  /* Cores (Material 3, conforme o Stitch) */
+  --primary: #0058be;
+  --primary-container: #2170e4;
+  --on-primary: #ffffff;
+  --primary-fixed: #d8e2ff;
+  --secondary: #525e7d;
+  --secondary-container: #cdd9fe;
+  --secondary-fixed: #d9e2ff;
+  --tertiary: #523fe0;
+  --tertiary-container: #6c5bfa;
+  --tertiary-fixed: #e4dfff;
+  --on-tertiary: #ffffff;
+  --on-tertiary-fixed: #150067;
+  --surface: #f7f9fb;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f2f4f6;
+  --surface-container: #eceef0;
+  --surface-container-high: #e6e8ea;
+  --surface-container-highest: #e0e3e5;
+  --on-surface: #191c1e;
+  --on-surface-variant: #424754;
+  --on-background: #191c1e;
+  --outline: #727785;
+  --outline-variant: #c2c6d6;
+  --error: #ba1a1a;
+  --error-container: #ffdad6;
+  --on-error-container: #93000a;
+  --success: #10b981;
+
+  /* Cores usadas diretamente nas telas "Iniciar teste" e "Resultados" */
+  --ink: #14213d;
+  --ink-strong: #111827;
+  --slate-900: #0f172a;
+  --slate-500: #64748b;
+  --slate-400: #94a3b8;
+  --slate-300: #cbd5e1;
+  --ice: #f5f9fb;
+  --ice-alt: #f0f5f8;
+  --ice-line: #e2e8ee;
+  --ice-page: #eaf1f5;
+  --brand-blue: #3b82f6;
+  --brand-violet: #6d5dfb;
+
+  /* Espaçamentos */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --gutter: 1.5rem;
+  --margin: 2rem;
+
+  /* Raios (escala do Stitch: DEFAULT 4px, lg 8px, xl 12px) */
+  --radius: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Sombras (escala padrão do Tailwind v3) */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Tipografia */
+  --font: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* =====================================================================
+   2. RESET — mesmas regras do "preflight" do Tailwind v3,
+      para que os elementos tenham o mesmo ponto de partida do Stitch
+   ===================================================================== */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+}
+
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+  font-family: var(--font);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  line-height: inherit;
+  overscroll-behavior: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-feature-settings: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button {
+  background-color: transparent;
+  background-image: none;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre {
+  margin: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img,
+svg,
+video {
+  display: block;
+  vertical-align: middle;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+input::placeholder {
+  opacity: 1;
+  color: #9ca3af;
+}
+
+table {
+  text-indent: 0;
+  border-color: inherit;
+  border-collapse: collapse;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Regras de base que o Stitch adiciona a todas as telas */
+main > :first-child {
+  margin-top: 0 !important;
+}
+
+main > :last-child {
+  margin-bottom: 0 !important;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* =====================================================================
+   3. BASE, ÍCONES E ANIMAÇÕES
+   ===================================================================== */
+
+/* Corpo padrão das telas (bg-surface, font-body-md, text-on-surface) */
+.page {
+  background-color: var(--surface);
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0;
+  font-weight: 400;
+  color: var(--on-surface);
+}
+
+/* Ícones Material Symbols: tamanhos usados nas telas do Stitch */
+.material-symbols-outlined {
+  user-select: none;
+  /* Reserva 1em de largura: evita que o nome do ícone apareça como texto
+     largo enquanto a fonte de ícones ainda está carregando. */
+  display: inline-block;
+  width: 1em;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.icon-14 { font-size: 14px; }
+.icon-16 { font-size: 16px; }
+.icon-18 { font-size: 18px; }
+.icon-20 { font-size: 20px; }
+.icon-22 { font-size: 22px; }
+.icon-26 { font-size: 26px; }
+.icon-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.icon-base { font-size: 1rem; line-height: 1.5rem; }
+.icon-lg { font-size: 1.125rem; line-height: 1.75rem; }
+
+/* Animações equivalentes a animate-pulse, animate-ping, animate-bounce e animate-spin */
+@keyframes nm-pulse {
+  50% { opacity: 0.5; }
+}
+
+@keyframes nm-ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+
+@keyframes nm-bounce {
+  0%, 100% { transform: translateY(-25%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+  50% { transform: none; animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+}
+
+@keyframes nm-spin {
+  to { transform: rotate(360deg); }
+}
+
+.anim-pulse { animation: nm-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+.anim-ping { animation: nm-ping 1s cubic-bezier(0, 0, 0.2, 1) infinite; }
+.anim-bounce { animation: nm-bounce 1s infinite; }
+.anim-spin { animation: nm-spin 1s linear infinite; }
+
+/* Pontos de status (bolinhas) */
+.dot {
+  display: block;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+}
+
+.dot-6 { width: 0.375rem; height: 0.375rem; }
+.dot-8 { width: 0.5rem; height: 0.5rem; }
+.dot-primary { background-color: var(--primary); }
+.dot-success { background-color: var(--success); }
+
+/* =====================================================================
+   4. CABEÇALHO E RODAPÉ DO SITE (index.html, iniciar-teste.html, resultado.html)
+   ===================================================================== */
+
+/* Corpo das páginas com cabeçalho fixo: coluna que ocupa a altura toda
+   para empurrar o rodapé para baixo. */
+.site-body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* [BM-01] Cabeçalho fixo translúcido
+   Content: width 100% | height 4rem (na faixa interna) | box-sizing border-box
+   Padding: 0 (o recuo de 2rem fica na faixa interna .site-header__inner)
+   Border:  0 solid transparent | border-radius 0
+   Margin:  0 */
+.site-header {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 0;
+  border: 0 solid transparent;
+  border-radius: 0;
+  margin: 0;
+  z-index: 50;
+  background-color: rgb(255 255 255 / 0.9);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* [BM-02] Faixa interna do cabeçalho
+   Content: width 100% | max-width 1440px | height 4rem | box-sizing border-box
+   Padding: padding-left e padding-right 2rem
+   Border:  0 solid transparent | border-radius 0
+   Margin:  margin-left e margin-right auto (centraliza)
+   [FX-01] Logo + menu à esquerda e ações à direita: justify-content: space-between. */
+.site-header__inner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1440px;
+  height: 4rem;
+  padding-top: 0;
+  padding-right: var(--margin);
+  padding-bottom: 0;
+  padding-left: var(--margin);
+  border: 0 solid transparent;
+  border-radius: 0;
+  margin-top: 0;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.site-header__left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.site-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.site-brand__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.site-brand__name {
+  font-size: 1.25rem;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--on-surface);
+}
+
+.site-brand__sub {
+  font-size: 0.6875rem;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--outline);
+  margin-top: 0.25rem;
+}
+
+/* [FX-02] Menu de navegação horizontal: oculto no celular e exibido como
+   linha flexível com gap de 1.5rem a partir de 1024px (ver seção 11). */
+.site-nav {
+  display: none;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+/* [BM-03] Link do menu de navegação
+   Content: largura automática (conteúdo) | box-sizing border-box
+   Padding: padding-top e padding-bottom 0.25rem
+   Border:  0 solid transparent | border-radius 0
+   Margin:  0 */
+.site-nav__link {
+  box-sizing: border-box;
+  width: auto;
+  padding-top: var(--space-xs);
+  padding-right: 0;
+  padding-bottom: var(--space-xs);
+  padding-left: 0;
+  border: 0 solid transparent;
+  border-radius: 0;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  letter-spacing: 0.025em;
+  font-weight: 600;
+  color: var(--on-surface-variant);
+  transition: color 150ms var(--ease);
+}
+
+.site-nav__link:hover { color: var(--on-surface); }
+
+.site-nav__link.is-active {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.site-header__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.server-pill {
+  display: none;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0.375rem var(--space-sm);
+  border-radius: var(--radius-full);
+  background-color: var(--surface-container-low);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--on-surface-variant);
+}
+
+/* [BM-04] Botão "Entrar" do cabeçalho
+   Content: largura automática | box-sizing border-box
+   Padding: 0.5rem 1rem
+   Border:  0 solid transparent | border-radius 0.5rem
+   Margin:  0 */
+.btn-header {
+  box-sizing: border-box;
+  width: auto;
+  padding: 0.5rem var(--space-md);
+  border: 0 solid transparent;
+  border-radius: var(--radius-lg);
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary);
+  color: var(--on-primary);
+  font-size: 0.875rem;
+  line-height: 1.2;
+  letter-spacing: 0.025em;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: background-color 150ms var(--ease);
+}
+
+.btn-header:hover { background-color: var(--primary-container); }
+
+.avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-full);
+  background-color: var(--primary);
+  color: var(--on-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.site-main {
+  width: 100%;
+  padding-top: 4rem;
+  background-color: var(--surface);
+  flex: 1 1 0%;
+}
+
+/* Rodapé simples (tela "Iniciar teste") */
+.simple-footer {
+  width: 100%;
+  margin-top: auto;
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid var(--ice-line);
+  background-color: var(--ice);
+  color: var(--slate-500);
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+/* [FX-03] Rodapé: coluna centralizada no celular e linha com space-between
+   a partir de 640px (flex-direction alterado por media query). */
+.simple-footer__inner {
+  max-width: 56rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.simple-footer__links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.simple-footer__links a { color: var(--slate-500); }
+.simple-footer__links a:hover { text-decoration: underline; }
+
+@media (min-width: 640px) {
+  .simple-footer__inner { flex-direction: row; text-align: left; }
+}
+
+@media (min-width: 768px) {
+  .server-pill { display: flex; }
+}
+
+@media (min-width: 1024px) {
+  .site-nav { display: flex; }
+}
+
+
+/* =====================================================================
+   5. AUTENTICAÇÃO — login.html, cadastro.html, recuperar/redefinir senha
+   Duas variantes do Stitch foram preservadas:
+     --login    → card arredondado (2rem) com brilhos ao fundo (tela "Entrar")
+     --register → card compacto (0.75rem) da tela "Criar Conta"
+   ===================================================================== */
+
+/* [FX-04] Corpo das telas de autenticação: centraliza o card na viewport
+   com display:flex + align-items + justify-content. */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+}
+
+.auth-main {
+  width: 100%;
+  max-width: 28rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* [FX-05] Palco do card: coluna flexível centralizada (flex-direction: column). */
+.auth-stage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.auth-stage--login {
+  align-items: center;
+  justify-content: center;
+  padding-top: var(--space-sm);
+  padding-bottom: var(--space-sm);
+  position: relative;
+}
+
+/* Brilhos decorativos atrás do card de login */
+.auth-glow {
+  position: absolute;
+  border-radius: var(--radius-full);
+  filter: blur(64px);
+  pointer-events: none;
+}
+
+.auth-glow--primary {
+  top: -3rem;
+  left: -4rem;
+  width: 14rem;
+  height: 14rem;
+  background-color: var(--primary-fixed);
+  opacity: 0.4;
+}
+
+.auth-glow--tertiary {
+  bottom: -4rem;
+  right: -4rem;
+  width: 16rem;
+  height: 16rem;
+  background-color: var(--tertiary-fixed);
+  opacity: 0.3;
+}
+
+/* [BM-05] Card de autenticação (tela de login)
+   Content: width 100% | max-width 28rem (herdado de .auth-main) | box-sizing border-box
+   Padding: 1.5rem (2.5rem em telas ≥ 640px)
+   Border:  0 solid transparent | border-radius 2rem
+   Margin:  0 (centralizado pelo contêiner flexível) */
+.auth-card--login {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: var(--space-lg);
+  border: 0 solid transparent;
+  border-radius: 2rem;
+  margin: 0;
+  position: relative;
+  z-index: 10;
+  background-color: var(--surface-container-lowest);
+  box-shadow: var(--shadow-xl);
+}
+
+/* [BM-06] Card de autenticação (tela de cadastro)
+   Content: width 100% | box-sizing border-box
+   Padding: 1.5rem (2rem em telas ≥ 640px)
+   Border:  0 solid transparent | border-radius 0.75rem
+   Margin:  0 */
+.auth-card--register {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: var(--space-lg);
+  border: 0 solid transparent;
+  border-radius: var(--radius-xl);
+  margin: 0;
+  background-color: var(--surface-container-lowest);
+  box-shadow: var(--shadow-sm);
+}
+
+/* [FX-06] Cabeçalho do card: logo à esquerda e selo SSL à direita
+   (justify-content: space-between). */
+.auth-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.auth-head--login { margin-bottom: var(--space-lg); }
+.auth-head--register { padding-bottom: 1.5rem; }
+
+.auth-brand {
+  display: flex;
+  align-items: center;
+}
+
+.auth-brand--login { gap: var(--space-xs); }
+.auth-brand--register { gap: 0.625rem; }
+
+/* [BM-07] Quadrado do logotipo (ícone "psychology")
+   Content: 2.25rem × 2.25rem (2rem × 2rem na tela de login) | box-sizing border-box
+   Padding: 0 (ícone centralizado por flexbox)
+   Border:  0 solid transparent | border-radius 0.5rem
+   Margin:  0 */
+.brand-mark {
+  box-sizing: border-box;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 0 solid transparent;
+  border-radius: var(--radius-lg);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background-color: var(--primary);
+  color: var(--on-primary);
+}
+
+.brand-mark--sm { width: 2rem; height: 2rem; }
+.brand-mark--glow { box-shadow: 0 1px 2px 0 rgb(0 88 190 / 0.2); }
+
+.auth-brand__text {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-brand__name {
+  font-family: var(--font);
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--on-surface);
+}
+
+.auth-brand__name--tight { line-height: 1; color: var(--on-background); }
+
+.auth-brand__sub {
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+  margin-top: 0.125rem;
+}
+
+/* Selo "SSL 256-bit" */
+.ssl-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-full);
+}
+
+.ssl-badge--login {
+  gap: 0.25rem;
+  padding: 0.125rem var(--space-xs);
+  background-color: var(--surface-container);
+  color: var(--on-surface-variant);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.ssl-badge--register {
+  display: flex;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  background-color: var(--surface-container-low);
+  color: var(--secondary);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+/* Abas Entrar / Criar Conta (grade de duas colunas, como no Stitch) */
+.auth-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 0.25rem;
+}
+
+.auth-tabs--login {
+  background-color: var(--surface-container);
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--space-lg);
+}
+
+.auth-tabs--register {
+  background-color: var(--surface-container-low);
+  border-radius: var(--radius-lg);
+  margin-bottom: 1.5rem;
+  gap: 0.25rem;
+}
+
+/* [BM-08] Aba de navegação Entrar / Criar Conta
+   Content: width 100% | box-sizing border-box
+   Padding: 0.625rem 0 (padding-top e padding-bottom)
+   Border:  0 solid transparent | border-radius 0.5rem (0.375rem no cadastro)
+   Margin:  0
+   [FX-07] Ícone + texto alinhados no centro com gap de 0.375rem. */
+.auth-tab {
+  box-sizing: border-box;
+  width: 100%;
+  padding-top: 0.625rem;
+  padding-right: 0;
+  padding-bottom: 0.625rem;
+  padding-left: 0;
+  border: 0 solid transparent;
+  border-radius: var(--radius-lg);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  letter-spacing: 0.025em;
+  font-weight: 600;
+  color: var(--on-surface-variant);
+  transition: all 200ms var(--ease);
+}
+
+.auth-tab:hover { color: var(--on-surface); }
+
+.auth-tab.is-active {
+  background-color: var(--surface-container-lowest);
+  box-shadow: var(--shadow-sm);
+}
+
+.auth-tabs--login .auth-tab.is-active { color: var(--primary); }
+
+.auth-tabs--register .auth-tab {
+  border-radius: var(--radius-md);
+  transition-duration: 150ms;
+}
+
+.auth-tabs--register .auth-tab:hover { color: var(--on-background); }
+.auth-tabs--register .auth-tab.is-active { color: var(--on-background); }
+
+/* Título e subtítulo do formulário */
+.auth-intro { margin-bottom: 1.5rem; }
+
+.auth-title {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--on-surface);
+}
+
+.auth-title--login { line-height: 1.25; }
+.auth-title--register { color: var(--on-background); }
+
+.auth-subtitle {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--on-surface-variant);
+  margin-top: 0.25rem;
+}
+
+/* [FX-08] Formulário de cadastro em coluna flexível com gap de 1rem entre os campos. */
+.auth-form--register {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Formulário de login: espaçamento vertical de 1rem entre os blocos (space-y) */
+.auth-form--login > * + * { margin-top: var(--space-md); }
+
+/* [FX-09] Cada campo do cadastro: rótulo e caixa empilhados (column) com gap de 0.375rem. */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.field-label--login { color: var(--on-surface-variant); margin-bottom: 0.375rem; }
+.field-label--register { color: var(--on-background); }
+
+/* [FX-10] Caixa do campo: ícone posicionado sobre o input, centralizado verticalmente (align-items). */
+.field-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.field-icon {
+  position: absolute;
+  pointer-events: none;
+}
+
+.field-icon--login {
+  left: 0.75rem;
+  color: var(--outline);
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.field-icon--register {
+  left: 0.875rem;
+  color: var(--on-surface-variant);
+  font-size: 20px;
+}
+
+/* [BM-09] Campo de entrada de texto (e-mail, nome, idade, telefone, senha)
+   Content: width 100% | height 2.75rem | box-sizing border-box
+   Padding: padding-left 2.75rem (espaço do ícone) | padding-right 1rem | top/bottom 0
+   Border:  0 solid transparent | border-radius 0.5rem (o foco usa box-shadow, como no Stitch)
+   Margin:  0 */
+.auth-input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 2.75rem;
+  padding-top: 0;
+  padding-right: 1rem;
+  padding-bottom: 0;
+  padding-left: 2.75rem;
+  border: 0 solid transparent;
+  border-radius: var(--radius-lg);
+  margin: 0;
+  background-color: var(--surface-container-low);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: all 150ms var(--ease);
+}
+
+.auth-input--login { padding-left: 2.5rem; color: var(--on-surface); }
+/* As imagens de referência do Stitch mostram o placeholder na mesma cor do texto (#191c1e);
+   o código exportado indicava cinza. Seguimos a imagem, que é a referência prioritária. */
+.auth-input--login::placeholder { color: var(--on-surface); }
+.auth-input--login:focus { background-color: var(--surface-container-lowest); box-shadow: 0 0 0 2px #0058be; }
+
+.auth-input--register { color: var(--on-background); }
+.auth-input--register::placeholder { color: var(--on-background); }
+.auth-input--register:focus { background-color: var(--surface-container-lowest); box-shadow: 0 0 0 2px #3b82f6; }
+
+.auth-input--with-eye { padding-right: 2.75rem; }
+
+.auth-input.is-invalid { box-shadow: 0 0 0 2px var(--error); }
+
+/* Botão de mostrar/ocultar senha */
+.eye-toggle {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  color: var(--on-surface-variant);
+}
+
+.eye-toggle:hover { color: var(--on-background); }
+.eye-toggle:focus { outline: 2px solid transparent; outline-offset: 2px; }
+
+.eye-toggle--login {
+  right: 0.5rem;
+  padding: 0.375rem;
+  justify-content: center;
+  color: var(--outline);
+}
+
+.eye-toggle--login:hover { color: var(--on-surface); }
+.eye-toggle--register { right: 0.875rem; }
+
+/* Linha Idade + Telefone (grade de 1 coluna; 2 colunas a partir de 640px) */
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+/* [FX-11] "Lembrar de mim" à esquerda e "Esqueci minha senha" à direita (space-between). */
+.auth-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.25rem;
+}
+
+/* [FX-12] Caixa de seleção + texto alinhados na mesma linha (inline-flex + gap). */
+.check-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.check-native {
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+  margin: 0;
+}
+
+.text-body-sm {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--on-surface-variant);
+}
+
+.link-label {
+  font-size: 0.75rem;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  color: var(--primary);
+  transition: color 150ms var(--ease);
+}
+
+.link-label:hover { color: var(--primary-container); }
+
+/* Termos de uso (checkbox personalizada do cadastro) */
+.terms {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  padding-top: 0.25rem;
+}
+
+.terms__box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 0.125rem;
+}
+
+.terms__input {
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+  border-radius: var(--radius);
+  background-color: var(--surface-container-low);
+  transition: all 150ms var(--ease);
+}
+
+.terms__input:checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.terms__input:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #3b82f6;
+}
+
+.terms__check {
+  position: absolute;
+  left: 0;
+  font-size: 16px;
+  color: var(--on-primary);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 150ms var(--ease);
+}
+
+.terms__input:checked + .terms__check { opacity: 1; }
+
+.terms__label {
+  font-size: 0.875rem;
+  line-height: 1.25;
+  color: var(--on-surface-variant);
+  cursor: pointer;
+  user-select: none;
+}
+
+.terms__label a {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.terms__label a:hover { text-decoration: underline; }
+
+/* [BM-10] Botão principal com gradiente (Entrar / Criar conta)
+   Content: width 100% | height 3rem no login, 2.75rem no cadastro | box-sizing border-box
+   Padding: 0 (conteúdo centralizado por flexbox)
+   Border:  0 solid transparent | border-radius 0.75rem (0.5rem no cadastro)
+   Margin:  margin-top 1rem (0.5rem no cadastro)
+   [FX-13] Texto e seta centralizados com justify-content: center e gap 0.5rem. */
+.btn-gradient {
+  box-sizing: border-box;
+  width: 100%;
+  height: 3rem;
+  padding: 0;
+  border: 0 solid transparent;
+  border-radius: var(--radius-xl);
+  margin-top: var(--space-md);
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--on-primary);
+  font-size: 0.875rem;
+  line-height: 1.2;
+  letter-spacing: 0.025em;
+  font-weight: 600;
+  transition: all 150ms var(--ease);
+}
+
+.btn-gradient--login {
+  background-image: linear-gradient(to right, var(--primary), var(--primary-container), var(--tertiary));
+  box-shadow: var(--shadow-md);
+}
+
+.btn-gradient--login:hover { box-shadow: var(--shadow-lg); opacity: 0.95; }
+.btn-gradient--login:active { transform: scale(0.99); }
+
+.btn-gradient--register {
+  height: 2.75rem;
+  margin-top: 0.5rem;
+  border-radius: var(--radius-lg);
+  background-image: linear-gradient(to right, var(--primary), var(--tertiary));
+  box-shadow: 0 4px 6px -1px rgb(0 88 190 / 0.25), 0 2px 4px -2px rgb(0 88 190 / 0.25);
+}
+
+.btn-gradient--register:hover {
+  box-shadow: 0 10px 15px -3px rgb(0 88 190 / 0.35), 0 4px 6px -4px rgb(0 88 190 / 0.35);
+}
+
+.btn-gradient:disabled { opacity: 0.75; cursor: progress; }
+
+/* Divisor "OU" */
+.divider {
+  display: flex;
+  align-items: center;
+}
+
+/* [FX-14] Divisor do login: as duas linhas crescem igualmente (flex: 1 1 0%). */
+.divider--login { margin: var(--space-lg) 0; }
+
+.divider--login .divider__line {
+  flex: 1 1 0%;
+  height: 1px;
+  background-color: var(--surface-container-high);
+}
+
+.divider--login .divider__text {
+  padding: 0 var(--space-sm);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--outline);
+}
+
+.divider--register {
+  position: relative;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.divider--register .divider__line {
+  width: 100%;
+  height: 1px;
+  background-color: var(--surface-container-high);
+}
+
+.divider--register .divider__text {
+  position: absolute;
+  padding: 0 0.75rem;
+  background-color: var(--surface-container-lowest);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+}
+
+/* [BM-11] Botão "Continuar com Google"
+   Content: width 100% | height 2.75rem | box-sizing border-box
+   Padding: 0 (ícone e texto centralizados com flexbox)
+   Border:  0 solid transparent | border-radius 0.75rem (0.5rem no cadastro)
+   Margin:  0 */
+.btn-google {
+  box-sizing: border-box;
+  width: 100%;
+  height: 2.75rem;
+  padding: 0;
+  border: 0 solid transparent;
+  border-radius: var(--radius-xl);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--on-surface);
+  font-size: 0.875rem;
+  line-height: 1.2;
+  letter-spacing: 0.025em;
+  font-weight: 600;
+  transition: all 150ms var(--ease);
+}
+
+.btn-google svg { width: 1rem; height: 1rem; }
+
+.btn-google--login {
+  background-color: var(--surface-container-lowest);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-google--login:hover { background-color: var(--surface-container-low); }
+
+.btn-google--register {
+  border-radius: var(--radius-lg);
+  background-color: var(--surface-container-low);
+  font-weight: 500;
+}
+
+.btn-google--register:hover { background-color: var(--surface-container); }
+
+/* Rodapé do card ("Já possui uma conta? Entrar") */
+.auth-switch {
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--on-surface-variant);
+}
+
+.auth-switch--login { margin-top: var(--space-lg); }
+.auth-switch--register { margin-top: 1.5rem; }
+
+.auth-switch__link {
+  margin-left: 0.25rem;
+  color: var(--primary);
+}
+
+.auth-switch__link:hover { text-decoration: underline; }
+
+.auth-switch--login .auth-switch__link {
+  font-size: 0.875rem;
+  line-height: 1.2;
+  letter-spacing: 0.025em;
+  font-weight: 600;
+}
+
+.auth-switch--register .auth-switch__link { font-weight: 600; }
+
+/* Rodapé institucional abaixo do card */
+.auth-legal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.auth-legal--login {
+  margin-top: var(--space-md);
+  gap: 1rem;
+  color: var(--outline);
+  letter-spacing: 0.05em;
+}
+
+.auth-legal--login .auth-legal__item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.auth-legal--register {
+  margin-top: 1.5rem;
+  gap: 0.5rem;
+  text-align: center;
+  color: rgb(66 71 84 / 0.7);
+  letter-spacing: 0.025em;
+}
+
+.auth-legal__sep { font-size: 10px; opacity: 0.4; }
+
+/* Mensagens de erro e de sucesso dos formulários */
+.alert {
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-lg);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.alert--banner {
+  gap: 0.5rem;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.alert--inline {
+  gap: 0.375rem;
+  padding: 0.5rem;
+}
+
+.alert--error { background-color: var(--error-container); color: var(--on-error-container); }
+.alert--success { background-color: #d1fae5; color: #065f46; }
+
+.field-error {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.125rem;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  color: var(--error);
+}
+
+/* Responsividade das telas de autenticação (breakpoint "sm" do Tailwind: 640px) */
+/* Em telas estreitas os brilhos decorativos passariam da borda e criariam
+   rolagem horizontal; ali eles são recortados (no desktop ficam como no Stitch). */
+@media (max-width: 639px) {
+  .auth-stage--login { overflow-x: clip; }
+}
+
+@media (min-width: 640px) {
+  .auth-card--login { padding: var(--space-xl); }
+  .auth-card--register { padding: 2rem; }
+  .field-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Página simples de texto (termos, 404) usando o mesmo card do cadastro */
+.doc-card h1 {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--on-background);
+  margin-bottom: 0.75rem;
+}
+
+.doc-card h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--on-background);
+  margin-top: 1.25rem;
+  margin-bottom: 0.375rem;
+}
+
+.doc-card p,
+.doc-card li {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--on-surface-variant);
+}
+
+.doc-card ul { list-style: disc; padding-left: 1.25rem; }
+.doc-card a { color: var(--primary); font-weight: 600; }
+
+/* =====================================================================
+   6. PÁGINA INICIAL — index.html
+   ===================================================================== */
+
+/* [FX-15] Hero de tela cheia: coluna com justify-content: space-between,
+   que mantém o bloco central no meio e o indicador de rolagem no rodapé da seção. */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-xl) var(--margin);
+  overflow: hidden;
+}
+
+/* Camada decorativa (mesmo z-index -10 do Stitch) */
+.hero__decor {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero__glow {
+  position: absolute;
+  width: 620px;
+  height: 620px;
+  border-radius: var(--radius-full);
+  background-image: linear-gradient(to top right, rgb(0 88 190 / 0.1), rgb(82 63 224 / 0.1), transparent);
+  filter: blur(64px);
+  transform: translateY(-3rem);
+  animation: nm-pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.hero__glow--soft {
+  width: 340px;
+  height: 340px;
+  background-image: none;
+  background-color: rgb(217 226 255 / 0.3);
+  filter: blur(40px);
+  transform: translate(12rem, 9rem);
+  animation: none;
+}
+
+.hero__network {
+  width: 100%;
+  max-width: 1200px;
+  height: 580px;
+  opacity: 0.35;
+  color: var(--outline-variant);
+}
+
+.hero__spacer { width: 100%; }
+
+.hero__center {
+  width: 100%;
+  max-width: 56rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 1rem;
+  border-radius: var(--radius-full);
+  background-color: var(--surface-container-low);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-lg);
+  cursor: default;
+  transition: transform 150ms var(--ease);
+}
+
+.hero__tag:hover { transform: scale(1.02); }
+
+.hero__tag-text {
+  font-size: 0.75rem;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+}
+
+.hero__title {
+  max-width: 48rem;
+  margin-bottom: var(--space-md);
+  font-size: 3rem;
+  line-height: 1.12;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--on-surface);
+}
+
+/* No Stitch, "text-primary" vence "text-transparent": o QI aparece na cor primária sólida. */
+.hero__qi {
+  color: var(--primary);
+  background-image: linear-gradient(to right, var(--primary), var(--tertiary), var(--primary-container));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.hero__lead {
+  max-width: 42rem;
+  margin-bottom: var(--space-xl);
+  font-size: 1.125rem;
+  line-height: 1.625;
+  letter-spacing: -0.005em;
+  color: var(--on-surface-variant);
+}
+
+.hero__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* [BM-12] Botão principal da página inicial ("Acessar com Login")
+   Content: largura do conteúdo | box-sizing border-box
+   Padding: padding-top/bottom 0.875rem e padding-left/right 2.5rem
+   Border:  0 solid transparent | border-radius 9999px
+   Margin:  0 */
+.btn-hero {
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0.875rem;
+  padding-right: 2.5rem;
+  padding-bottom: 0.875rem;
+  padding-left: 2.5rem;
+  border: 0 solid transparent;
+  border-radius: var(--radius-full);
+  margin: 0;
+  background-image: linear-gradient(to right, #3b82f6, var(--primary), #6d5dfb);
+  color: var(--on-primary);
+  font-size: 0.875rem;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.38);
+  transition: all 300ms var(--ease);
+}
+
+.btn-hero:hover {
+  box-shadow: 0 16px 32px -6px rgba(109, 93, 251, 0.48);
+  transform: scale(1.03);
+}
+
+.btn-hero:active { transform: scale(0.98); }
+
+.btn-hero__label {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-hero__arrow { transition: transform 300ms var(--ease); }
+.btn-hero:hover .btn-hero__arrow { transform: translateX(0.25rem); }
+
+.btn-hero__overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-full);
+  background-image: linear-gradient(to right, var(--primary-container), var(--tertiary-container));
+  opacity: 0;
+  transition: opacity 300ms var(--ease);
+}
+
+.btn-hero:hover .btn-hero__overlay { opacity: 1; }
+
+.hero__stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  max-width: 28rem;
+  margin: var(--space-xl) auto 0;
+  padding-top: var(--space-lg);
+  text-align: center;
+}
+
+.hero__stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero__stat-value {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--on-surface);
+}
+
+.label-caps {
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--outline);
+}
+
+/* Rótulo pequeno sem caixa alta (font-label-sm do Stitch) */
+.label-sm {
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--outline);
+}
+
+.hero__scroll {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  cursor: pointer;
+  transition: opacity 150ms var(--ease);
+}
+
+.hero__scroll:hover { opacity: 0.8; }
+.hero__scroll .label-caps { letter-spacing: 0.1em; margin-bottom: 0.25rem; }
+.hero__scroll .material-symbols-outlined { color: var(--primary); }
+
+/* Seção "Mais informações" */
+.section {
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--margin);
+  padding-right: var(--margin);
+}
+
+.section--info {
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+  scroll-margin-top: 5rem;
+}
+
+.section--notice {
+  padding-bottom: var(--space-xl);
+  scroll-margin-top: 5rem;
+}
+
+.section-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 48rem;
+  margin: 0 auto var(--space-xl);
+}
+
+.badge-tertiary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  background-color: var(--tertiary-fixed);
+  color: var(--on-tertiary-fixed);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-sm);
+}
+
+.section-title {
+  font-size: 2.25rem;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--on-surface);
+  margin-bottom: var(--space-sm);
+}
+
+.section-lead {
+  max-width: 36rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--on-surface-variant);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: var(--gutter);
+}
+
+/* [BM-13] Card de etapa ("Como funciona", "Avaliação cognitiva", "Resultados")
+   Content: largura da coluna da grade | box-sizing border-box
+   Padding: 1.5rem
+   Border:  0 solid transparent | border-radius 0.75rem
+   Margin:  0 (espaçamento pelo gap da grade)
+   [FX-16] Conteúdo em coluna com justify-content: space-between, que alinha o
+   rodapé dos três cards na mesma altura. */
+.info-card {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-lg);
+  border: 0 solid transparent;
+  border-radius: var(--radius-xl);
+  margin: 0;
+  background-color: var(--surface-container-lowest);
+  box-shadow: 0 4px 16px rgba(20, 33, 61, 0.04);
+  transition: all 300ms var(--ease);
+}
+
+.info-card:hover { transform: translateY(-0.25rem); box-shadow: 0 12px 28px rgba(59, 130, 246, 0.1); }
+.info-card--tertiary:hover { box-shadow: 0 12px 28px rgba(109, 93, 251, 0.1); }
+.info-card--container:hover { box-shadow: 0 12px 28px rgba(0, 88, 190, 0.1); }
+
+.info-card__icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-lg);
+  background-color: var(--surface-container-low);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-md);
+  color: var(--primary);
+  transition: background-color 300ms var(--ease), color 300ms var(--ease);
+}
+
+.info-card:hover .info-card__icon { background-color: var(--primary); color: var(--on-primary); }
+.info-card--tertiary .info-card__icon { color: var(--tertiary); }
+.info-card--tertiary:hover .info-card__icon { background-color: var(--tertiary); color: var(--on-tertiary); }
+.info-card--container .info-card__icon { color: var(--primary-container); }
+.info-card--container:hover .info-card__icon { background-color: var(--primary-container); color: var(--on-primary); }
+
+.info-card__step {
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.info-card--tertiary .info-card__step { color: var(--tertiary); }
+
+.info-card__title {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--on-surface);
+  margin-top: 0.25rem;
+  margin-bottom: var(--space-sm);
+}
+
+.info-card__text {
+  font-size: 1rem;
+  line-height: 1.625;
+  color: var(--on-surface-variant);
+}
+
+.info-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  color: var(--on-surface-variant);
+}
+
+.info-card__foot .label-caps { color: var(--on-surface-variant); }
+.text-tertiary { color: var(--tertiary); }
+.text-primary { color: var(--primary); }
+
+/* Faixa da curva de Gauss */
+.gauss {
+  margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  border-radius: var(--radius-xl);
+  background-color: var(--surface-container-lowest);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+}
+
+.gauss__copy {
+  max-width: 28rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.gauss__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.gauss__title {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--on-surface);
+}
+
+.gauss__chart {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  background-color: rgb(242 244 246 / 0.6);
+}
+
+.gauss__scale {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  color: var(--outline);
+}
+
+.gauss__scale strong { color: var(--primary); font-weight: 700; }
+
+.gauss__svg {
+  width: 100%;
+  height: 6rem;
+  overflow: visible;
+  color: var(--primary);
+}
+
+.gauss__legend {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--surface-container-high);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--on-surface-variant);
+}
+
+.gauss__legend strong { color: var(--tertiary); font-weight: 600; }
+
+/* Nota informativa */
+.notice {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border-radius: var(--radius-xl);
+  background-color: var(--surface-container-low);
+  box-shadow: var(--shadow-sm);
+}
+
+.notice__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-full);
+  background-color: var(--surface-container-highest);
+  color: var(--outline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.notice__body { flex: 1 1 0%; }
+
+.notice__title {
+  font-size: 0.75rem;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--on-surface);
+  margin-bottom: 0.125rem;
+}
+
+.notice__text {
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--on-surface-variant);
+}
+
+.notice__link {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--primary);
+  transition: color 150ms var(--ease);
+}
+
+.notice__link:hover { color: var(--primary-container); }
+
+/* Rodapé completo da página inicial */
+.site-footer {
+  width: 100%;
+  margin-top: auto;
+  background-color: var(--surface-container-lowest);
+  box-shadow: 0 -1px 8px rgba(0, 0, 0, 0.02);
+}
+
+/* [BM-14] Faixa interna do rodapé
+   Content: width 100% | max-width 1440px | box-sizing border-box
+   Padding: 2.5rem 2rem
+   Border:  0 solid transparent | border-radius 0
+   Margin:  margin-left e margin-right auto */
+.site-footer__inner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1440px;
+  padding: var(--space-xl) var(--margin);
+  border: 0 solid transparent;
+  border-radius: 0;
+  margin: 0 auto;
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: var(--gutter);
+  margin-bottom: var(--space-lg);
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.footer-col--brand { gap: var(--space-sm); }
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.footer-brand .brand-mark { width: 1.5rem; height: 1.5rem; border-radius: var(--radius); }
+
+.footer-brand__name {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--on-surface);
+}
+
+.footer-text {
+  max-width: 28rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--on-surface-variant);
+}
+
+.footer-col__title {
+  font-size: 0.75rem;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--on-surface);
+  margin-bottom: var(--space-xs);
+}
+
+.footer-link {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--on-surface-variant);
+  transition: color 150ms var(--ease);
+}
+
+.footer-link:hover { color: var(--on-surface); }
+
+.footer-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface-container-low);
+}
+
+.footer-box__title {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--tertiary);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.footer-box__text,
+.footer-disclaimer__text {
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--on-surface-variant);
+}
+
+.footer-disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-lg);
+  background-color: rgb(242 244 246 / 0.5);
+}
+
+.footer-disclaimer .material-symbols-outlined { color: var(--outline); flex-shrink: 0; margin-top: 0.125rem; }
+.footer-disclaimer__text { line-height: 1.625; }
+.footer-disclaimer__text strong { color: var(--on-surface); font-weight: 600; }
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding-top: var(--space-md);
+}
+
+.footer-bottom__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.footer-bottom__dot {
+  width: 0.25rem;
+  height: 0.25rem;
+  border-radius: var(--radius-full);
+  background-color: var(--outline-variant);
+}
+
+@media (min-width: 640px) {
+  .hero__actions { flex-direction: row; }
+  .hero__stats { gap: 4rem; }
+  .notice { flex-direction: row; align-items: center; padding: var(--space-lg); }
+  .footer-bottom { flex-direction: row; }
+}
+
+@media (min-width: 768px) {
+  .info-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .site-footer__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .footer-col--brand { grid-column: span 5 / span 5; }
+  .footer-col--nav { grid-column: span 3 / span 3; }
+  .footer-col--science { grid-column: span 4 / span 4; }
+}
+
+@media (min-width: 1024px) {
+  .gauss { flex-direction: row; }
+  .gauss__chart { width: 24rem; }
+}
+
+
+/* =====================================================================
+   7. INICIAR TESTE — iniciar-teste.html
+   ===================================================================== */
+.start-page { background-color: var(--ice-page); }
+
+.start-wrap {
+  width: 100%;
+  min-height: calc(100vh - 4rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+/* [FX-17] Coluna central da tela "Iniciar teste": flex-direction column + align-items center. */
+.start-column {
+  width: 100%;
+  max-width: 42rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* [BM-15] Selo "Avaliação cognitiva • 10 questões"
+   Content: largura do conteúdo (inline-flex) | box-sizing border-box
+   Padding: 0.375rem 1rem
+   Border:  1px solid #e2e8ee | border-radius 9999px
+   Margin:  margin-bottom 1.5rem */
+.start-pill {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 1rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--ice-line);
+  border-radius: var(--radius-full);
+  margin-bottom: 1.5rem;
+  background-color: var(--surface-container-low);
+  box-shadow: var(--shadow-sm);
+  cursor: default;
+  transition: transform 150ms var(--ease);
+}
+
+.start-pill:hover { transform: scale(1.02); }
+
+.start-pill__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: var(--radius-full);
+  background-color: var(--primary);
+  box-shadow: 0 0 8px #3b82f6;
+}
+
+.start-pill__text {
+  font-size: 0.75rem;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+}
+
+.start-title {
+  font-size: 1.875rem;
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--ink-strong);
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.start-title__line { display: inline-block; white-space: nowrap; }
+
+.start-title__qi {
+  display: inline-block;
+  margin-top: 0.25rem;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 800;
+  color: #2563eb;
+}
+
+.start-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 2rem;
+}
+
+/* [BM-16] Botão "Iniciar Quiz"
+   Content: largura do conteúdo | box-sizing border-box
+   Padding: padding-top/bottom 0.875rem e padding-left/right 2rem
+   Border:  0 solid transparent | border-radius 9999px
+   Margin:  0
+   [FX-18] Texto e seta alinhados com inline-flex, align-items center e gap 0.5rem. */
+.btn-start {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-top: 0.875rem;
+  padding-right: 2rem;
+  padding-bottom: 0.875rem;
+  padding-left: 2rem;
+  border: 0 solid transparent;
+  border-radius: var(--radius-full);
+  margin: 0;
+  background-image: linear-gradient(to right, #2563eb, #4f46e5);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  box-shadow: 0 10px 15px -3px rgb(59 130 246 / 0.25), 0 4px 6px -4px rgb(59 130 246 / 0.25);
+  transition: all 300ms var(--ease);
+}
+
+.btn-start:hover {
+  background-image: linear-gradient(to right, #1d4ed8, #4338ca);
+  transform: scale(1.02);
+}
+
+.btn-start:active { transform: scale(0.98); }
+.btn-start:disabled { opacity: 0.8; cursor: progress; transform: none; }
+
+.start-hint {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: var(--slate-500);
+}
+
+/* [FX-19] Indicadores numéricos (10 questões / tempo livre) lado a lado,
+   centralizados com justify-content center e gap de 3rem (4rem a partir de 640px). */
+.start-stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.start-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.start-stat__value {
+  font-size: 1.25rem;
+  line-height: 1.25;
+  font-weight: 700;
+  color: var(--slate-900);
+}
+
+.start-stat__label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+  margin-top: 0.125rem;
+}
+
+/* [BM-17] Card "Antes de começar"
+   Content: width 100% | box-sizing border-box
+   Padding: 1.5rem (1.75rem a partir de 640px)
+   Border:  1px solid #e2e8ee | border-radius 1rem
+   Margin:  margin-bottom 2rem */
+.start-card {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1.5rem;
+  border: 1px solid var(--ice-line);
+  border-radius: var(--radius-2xl);
+  margin-bottom: 2rem;
+  background-color: var(--ice);
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+  transition: all 150ms var(--ease);
+}
+
+.start-card__title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.start-card__list > * + * { margin-top: 0.75rem; }
+
+.start-card__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.375;
+  color: var(--ink);
+}
+
+.icon-blue { color: var(--brand-blue); flex-shrink: 0; }
+
+.start-skills {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.start-skills__label {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+  margin-bottom: 0.75rem;
+}
+
+/* [FX-20] Habilidades avaliadas: chips que quebram linha (flex-wrap: wrap)
+   e ficam centralizados (justify-content: center). */
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  max-width: 36rem;
+}
+
+/* [BM-18] Chip de habilidade
+   Content: largura do texto | box-sizing border-box
+   Padding: 0.375rem 0.75rem
+   Border:  1px solid #e2e8ee | border-radius 0.5rem
+   Margin:  0 (espaçamento pelo gap do contêiner) */
+.chip {
+  box-sizing: border-box;
+  padding: 0.375rem 0.75rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--ice-line);
+  border-radius: var(--radius-lg);
+  margin: 0;
+  background-color: var(--ice-alt);
+  color: var(--ink);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+}
+
+.start-notice {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+  .start-wrap { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .start-title { font-size: 2.25rem; line-height: 2.5rem; }
+  .start-title__qi { font-size: 3rem; line-height: 1; }
+  .btn-start { font-size: 1rem; line-height: 1.5rem; }
+  .start-stats { gap: 4rem; }
+  .start-stat__value { font-size: 1.5rem; line-height: 2rem; }
+  .start-stat__label { font-size: 0.75rem; line-height: 1rem; }
+  .start-card { padding: 1.75rem; }
+}
+
+@media (min-width: 768px) {
+  .start-title { font-size: 3rem; line-height: 1; }
+}
+
+/* =====================================================================
+   8. TELA DE QUESTÕES E MEMORIZAÇÃO — teste.html
+   Tela criada para o projeto (não havia export do Stitch), seguindo o DESIGN.md:
+   área de foco de no máximo 840px, seletores circulares, trilha de progresso
+   de 6px com gradiente #3B82F6 → #6D5DFB e cronômetro em pílula escura.
+   Sem o cabeçalho de navegação, para não distrair durante a avaliação.
+   ===================================================================== */
+.quiz-page {
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+.quiz-shell {
+  width: 100%;
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* [FX-21] Barra superior: marca à esquerda e cronômetros à direita.
+   flex-flow: row wrap permite que os cronômetros desçam de linha no celular. */
+.quiz-topbar {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  row-gap: 0.75rem;
+  column-gap: 1rem;
+}
+
+.quiz-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quiz-brand__name {
+  font-size: 1.125rem;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
+/* [FX-22] Grupo de cronômetros: os dois badges dividem a linha
+   (flex-grow 0, flex-shrink 0, flex-basis auto) e o botão "Encerrar" fica ao lado. */
+.quiz-timers {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* [BM-19] Badge de cronômetro (tempo geral e tempo da questão)
+   Content: min-width 8.5rem | height 2.25rem | box-sizing border-box
+   Padding: padding-left 0.75rem e padding-right 0.875rem
+   Border:  1px solid #14213d | border-radius 9999px
+   Margin:  0 */
+.timer-badge {
+  box-sizing: border-box;
+  min-width: 8.5rem;
+  height: 2.25rem;
+  padding-top: 0;
+  padding-right: 0.875rem;
+  padding-bottom: 0;
+  padding-left: 0.75rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--ink);
+  border-radius: var(--radius-full);
+  margin: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--ink);
+  color: #ffffff;
+}
+
+.timer-badge--light {
+  background-color: var(--surface-container-lowest);
+  border-color: var(--ice-line);
+  color: var(--ink);
+}
+
+.timer-badge__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.timer-badge__label {
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.timer-badge__value {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  margin-top: 0.125rem;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-lg);
+  color: var(--secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  transition: background-color 150ms var(--ease), color 150ms var(--ease);
+}
+
+.btn-ghost:hover { background-color: var(--surface-container); color: var(--on-surface); }
+
+/* Progresso */
+.quiz-progress__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.quiz-progress__label {
+  font-size: 0.75rem;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+}
+
+.quiz-progress__label strong { color: var(--ink); }
+
+.progress-track {
+  width: 100%;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background-color: var(--ice-line);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: var(--progress, 0%);
+  border-radius: var(--radius-full);
+  background-image: linear-gradient(to right, var(--brand-blue), var(--brand-violet));
+  transition: width 400ms var(--ease);
+}
+
+/* [BM-20] Cartão da questão
+   Content: width 100% | min-height 18rem | box-sizing border-box
+   Padding: 2rem (1.25rem no celular)
+   Border:  1px solid #e2e8f0 | border-radius 1rem
+   Margin:  0 (espaçamento pelo gap da coluna) */
+.question-card {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 18rem;
+  padding: 2rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e2e8f0;
+  border-radius: var(--radius-2xl);
+  margin: 0;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px -2px rgba(20, 33, 61, 0.06), 0 0 0 1px rgba(226, 232, 240, 0.8);
+}
+
+.question-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.tag-stat {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5rem;
+  padding: 0.25rem 0.75rem;
+  line-height: 1.2;
+  border-radius: var(--radius-full);
+  background-color: #eef2ff;
+  color: var(--brand-violet);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.tag-neutral {
+  display: inline-flex;
+  align-items: center;
+  height: 1.5rem;
+  padding: 0 0.75rem;
+  border-radius: var(--radius-full);
+  background-color: #f1f5f9;
+  color: #475569;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.question-card__statement:focus { outline: none; }
+
+.question-card__statement {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  font-weight: 500;
+  white-space: pre-line;
+}
+
+.question-card__figure {
+  margin: 1.25rem 0 0;
+  padding: 0.75rem;
+  border: 1px solid var(--ice-line);
+  border-radius: var(--radius-lg);
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.question-card__figure img {
+  max-width: 100%;
+  max-height: 22rem;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* [FX-23] Lista de alternativas de texto: coluna flexível com gap de 0.75rem. */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  border: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+/* [FX-24] Alternativas com imagem: grade flexível que quebra linha
+   (flex-wrap), com row-gap/column-gap separados e align-content: flex-start. */
+.options--images {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  row-gap: 0.75rem;
+  column-gap: 0.75rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* [BM-21] Alternativa (A–E)
+   Content: width 100% | min-height 3.5rem | box-sizing border-box
+   Padding: 1rem
+   Border:  1px solid #e2e8f0 (2px azul quando selecionada, via box-shadow) | border-radius 0.75rem
+   Margin:  0
+   [FX-25] Círculo da letra + texto alinhados (align-items center, gap 1rem). */
+.option {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 3.5rem;
+  padding: 1rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e2e8f0;
+  border-radius: var(--radius-xl);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: border-color 150ms var(--ease), box-shadow 150ms var(--ease), background-color 150ms var(--ease);
+}
+
+.option:hover { border-color: var(--slate-300); background-color: #fbfcfe; }
+
+.option.is-selected {
+  border-color: var(--brand-blue);
+  box-shadow: 0 8px 24px -4px rgba(59, 130, 246, 0.15), 0 0 0 1px var(--brand-blue);
+}
+
+.option:focus-within { outline: 2px solid var(--brand-blue); outline-offset: 2px; }
+
+/* [BM-22] Seletor circular com a letra da alternativa
+   Content: 1.75rem × 1.75rem | box-sizing border-box
+   Padding: 0
+   Border:  2px solid #cbd5e1 | border-radius 9999px
+   Margin:  0 */
+.option__letter {
+  box-sizing: border-box;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border: 2px solid var(--slate-300);
+  border-radius: var(--radius-full);
+  margin: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--slate-500);
+  transition: all 150ms var(--ease);
+}
+
+.option.is-selected .option__letter {
+  border-color: var(--brand-blue);
+  background-color: var(--brand-blue);
+  color: #ffffff;
+}
+
+.option__text {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+/* Alternativa com imagem: cartão vertical que cresce para dividir a linha */
+.option--image {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.625rem;
+  width: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 8.5rem;
+  padding: 0.75rem;
+}
+
+.option--image .option__head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.option--image img {
+  width: 100%;
+  height: 7rem;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+  background-color: #ffffff;
+}
+
+/* [FX-26] Rodapé da questão: aviso à esquerda e botão de confirmação à direita;
+   no celular o botão vem primeiro (propriedade order) e ocupa a largura toda. */
+.quiz-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.quiz-actions__note {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--slate-500);
+}
+
+.btn-confirm {
+  box-sizing: border-box;
+  height: 2.75rem;
+  padding: 0 1.5rem;
+  border-radius: var(--radius-lg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  background-image: linear-gradient(to right, var(--primary), var(--tertiary));
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  box-shadow: 0 4px 6px -1px rgb(0 88 190 / 0.25), 0 2px 4px -2px rgb(0 88 190 / 0.25);
+  transition: all 150ms var(--ease);
+}
+
+.btn-confirm:hover:not(:disabled) { box-shadow: 0 10px 15px -3px rgb(0 88 190 / 0.35), 0 4px 6px -4px rgb(0 88 190 / 0.35); }
+.btn-confirm:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
+
+/* Tela de memorização */
+.memo-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.memo-card__title {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+/* [FX-27] Dígitos da sequência centralizados em linha (justify-content center),
+   com quebra automática se a sequência for longa. */
+.memo-digits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+/* [BM-23] Bloco de cada dígito memorizado
+   Content: 3.5rem × 4rem | box-sizing border-box
+   Padding: 0
+   Border:  1px solid #e2e8f0 | border-radius 0.75rem
+   Margin:  0 */
+.memo-digit {
+  box-sizing: border-box;
+  width: 3.5rem;
+  height: 4rem;
+  padding: 0;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-xl);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8fafc;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.memo-card .progress-track { max-width: 20rem; }
+.memo-card .progress-fill { transition: width 250ms linear; }
+
+/* Mensagens de estado da tela (carregando, erro) */
+.quiz-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--slate-500);
+}
+
+.quiz-state .btn-confirm { margin-top: 1rem; }
+
+/* Diálogo de confirmação "Encerrar avaliação" */
+.dialog {
+  width: min(28rem, calc(100% - 2rem));
+  padding: 1.5rem;
+  border: 0;
+  border-radius: var(--radius-2xl);
+  box-shadow: 0 20px 32px -8px rgba(20, 33, 61, 0.12), 0 0 1px rgba(20, 33, 61, 0.2);
+  color: var(--ink);
+}
+
+.dialog::backdrop { background-color: rgb(20 33 61 / 0.35); }
+.dialog h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
+.dialog p { font-size: 0.875rem; line-height: 1.5; color: var(--slate-500); }
+
+.dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.btn-outline {
+  height: 2.75rem;
+  padding: 0 1.25rem;
+  border: 1px solid var(--slate-300);
+  border-radius: var(--radius-lg);
+  background-color: #ffffff;
+  color: var(--ink);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 150ms var(--ease);
+}
+
+.btn-outline:hover { background-color: #f1f5f9; }
+
+.btn-danger {
+  height: 2.75rem;
+  padding: 0 1.25rem;
+  border-radius: var(--radius-lg);
+  background-color: var(--error);
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+@media (max-width: 639px) {
+  .quiz-shell { padding-top: 1rem; }
+  .quiz-timers { width: 100%; }
+  .timer-badge { flex-grow: 1; flex-basis: 0; min-width: 0; }
+  .question-card { padding: 1.25rem; }
+  .question-card__statement { font-size: 1rem; }
+  .quiz-actions { flex-direction: column; align-items: stretch; }
+  .btn-confirm { order: -1; width: 100%; }
+  .option--image { flex-basis: calc(50% - 0.375rem); }
+  .memo-digit { width: 2.75rem; height: 3.25rem; font-size: 1.5rem; }
+}
+
+/* =====================================================================
+   9. RESULTADOS E HISTÓRICO — resultado.html
+   Origem: tela de resultados do Stitch. Os números fictícios foram trocados
+   por dados reais calculados pelo servidor.
+   ===================================================================== */
+
+/* Cabeçalho próprio da tela de resultados (variante do Stitch) */
+.results-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+  background-color: rgb(247 249 251 / 0.9);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+}
+
+.results-header__inner {
+  height: 4rem;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.results-brand__mark {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-lg);
+  background-color: var(--primary-container);
+  color: var(--on-primary-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.results-brand__sub {
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+.results-brand__name {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--on-surface);
+}
+
+.results-nav {
+  display: none;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-left: var(--space-lg);
+}
+
+.results-nav a {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-lg);
+  font-size: 0.875rem;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  color: var(--on-surface-variant);
+  transition: color 150ms var(--ease), background-color 150ms var(--ease);
+}
+
+.results-nav a:hover { color: var(--on-surface); background-color: var(--surface-container); }
+
+.results-pill {
+  display: none;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0.25rem var(--space-md);
+  border-radius: var(--radius-full);
+  background-color: var(--surface-container-high);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  color: var(--on-surface-variant);
+}
+
+.results-logout {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--secondary);
+  transition: color 150ms var(--ease);
+}
+
+.results-logout:hover { color: var(--on-surface); }
+
+.results-main {
+  width: 100%;
+  padding-top: 4rem;
+  min-height: calc(100vh - 10rem);
+  background-color: var(--surface);
+}
+
+.results-canvas {
+  width: 100%;
+  background-color: var(--ice-page);
+  color: var(--on-surface);
+  padding: 2rem 1rem;
+}
+
+.results-stack {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.results-content {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+
+.results-intro { display: flex; flex-direction: column; gap: 0.5rem; }
+
+/* [FX-28] Selo da tentativa: align-self: flex-start impede que o item
+   estique na coluna flexível (.results-intro) e mantém a largura do conteúdo. */
+.results-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  align-self: flex-start;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  background-color: var(--surface-container-high);
+  color: var(--secondary);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* [FX-29] Título do resultado e botão "Novo teste": coluna no celular,
+   linha com align-items center e justify-content space-between a partir de 640px. */
+.results-intro__row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.25rem;
+}
+
+.results-title {
+  font-size: 2.25rem;
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
+.results-date {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--slate-500);
+}
+
+.results-date strong { font-weight: 600; color: var(--on-surface); }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-lg);
+  background-color: var(--primary);
+  color: var(--on-primary);
+  font-size: 0.875rem;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  box-shadow: var(--shadow-sm);
+  transition: all 200ms var(--ease);
+}
+
+.btn-primary:hover { background-color: var(--primary-container); }
+.btn-primary:active { transform: scale(0.98); }
+
+.panel {
+  background-color: var(--ice);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.score-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+  align-items: stretch;
+}
+
+.score-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.eyebrow {
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+}
+
+.score-value {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.score-value__number {
+  font-size: 3rem;
+  line-height: 1.15;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
+.score-value__max {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--slate-500);
+}
+
+.bar-track {
+  width: 100%;
+  height: 0.875rem;
+  padding: 0.125rem;
+  border-radius: var(--radius-full);
+  background-color: var(--ice-line);
+  overflow: hidden;
+}
+
+.bar-track--thin { height: 0.5rem; padding: 0; margin-top: 0.5rem; }
+
+.bar-fill {
+  height: 100%;
+  width: var(--value, 0%);
+  border-radius: var(--radius-full);
+  background-image: linear-gradient(to right, var(--brand-blue), var(--brand-violet));
+  transition: width 1000ms ease-out;
+}
+
+.score-note {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--slate-500);
+}
+
+.iq-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.25rem;
+  border-radius: var(--radius-xl);
+  background-color: var(--ice-alt);
+}
+
+.iq-box__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.iq-box__label {
+  font-size: 0.75rem;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+}
+
+.iq-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--radius-lg);
+  background-color: var(--ice-line);
+  color: var(--primary);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.iq-value {
+  font-size: 2.25rem;
+  line-height: 1.2;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+/* [FX-30] Grade dos 8 cartões de estatística: linhas de 2 cartões que crescem
+   igualmente (flex: 1 1 calc(50% - gap)) e passam para 4 por linha em telas médias. */
+.stat-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* [BM-24] Cartão de estatística (Questões, Acertos, Tempo total...)
+   Content: flex-basis calc(50% - 0.5rem) | min-width 0 | box-sizing border-box
+   Padding: 1rem
+   Border:  0 solid transparent | border-radius 0.75rem
+   Margin:  0 */
+.stat-card {
+  box-sizing: border-box;
+  flex: 1 1 calc(50% - 0.5rem);
+  min-width: 0;
+  padding: 1rem;
+  border: 0 solid transparent;
+  border-radius: var(--radius-xl);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--ice);
+  box-shadow: var(--shadow-sm);
+  transition: transform 150ms var(--ease);
+}
+
+.stat-card:hover { transform: translateY(-0.125rem); }
+
+.stat-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card__value {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.stat-card__sub {
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--slate-500);
+  margin-top: 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-error { color: var(--error); }
+.text-secondary { color: var(--secondary); }
+.text-violet { color: var(--brand-violet); }
+
+/* Gráfico com seletor */
+.chart-panel {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.chart-panel__head {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.panel-title {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.segmented {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 0.25rem;
+  border-radius: var(--radius-lg);
+  background-color: var(--ice-line);
+}
+
+.segmented button {
+  padding: 0.375rem 0.875rem;
+  border-radius: var(--radius-md);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--on-surface-variant);
+  transition: color 150ms var(--ease), background-color 150ms var(--ease);
+}
+
+.segmented button:hover { color: var(--on-surface); }
+.segmented button.is-active { background-color: var(--brand-blue); color: #ffffff; }
+
+.chart-area {
+  width: 100%;
+  min-height: 340px;
+  padding: 1rem;
+  border-radius: var(--radius-xl);
+  background-color: var(--ice-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.chart-svg { width: 100%; height: 16rem; overflow: visible; }
+
+/* [FX-31] Gráfico de pizza + legenda: coluna no celular e linha a partir de 1024px. */
+.pie-layout {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 0.5rem;
+}
+
+.pie-figure { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+.pie-svg { width: 14rem; height: 14rem; }
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+  max-width: 22rem;
+  padding: 0.875rem;
+  border-radius: var(--radius-xl);
+  background-color: var(--ice-page);
+}
+
+.legend__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.375rem;
+  border-radius: var(--radius-lg);
+  font-size: 0.875rem;
+  color: var(--ink);
+}
+
+.legend__name { display: flex; align-items: center; gap: 0.5rem; font-weight: 500; }
+.legend__swatch { width: 0.875rem; height: 0.875rem; border-radius: var(--radius-full); flex-shrink: 0; }
+.legend__swatch--ok { background-color: var(--primary); }
+.legend__swatch--err { background-color: var(--error); }
+.legend__swatch--none { background-color: var(--slate-400); }
+
+.chart-caption {
+  font-size: 0.6875rem;
+  line-height: 1.625;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--slate-500);
+}
+
+/* Mapa cognitivo (categorias) */
+.section-stack { display: flex; flex-direction: column; gap: 1rem; }
+
+.section-stack__head {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.25rem;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: var(--radius-xl);
+  background-color: var(--ice);
+  box-shadow: var(--shadow-sm);
+}
+
+.category-card__head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+
+.category-card__name {
+  font-size: 0.875rem;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  color: var(--ink);
+}
+
+.mini-badge {
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius);
+  background-color: var(--ice-line);
+  color: var(--secondary);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.category-card__score { display: flex; align-items: baseline; gap: 0.25rem; margin-top: 0.5rem; }
+.category-card__score strong { font-size: 1.25rem; line-height: 1.4; font-weight: 800; color: var(--ink); }
+.category-card__score span { font-size: 0.75rem; font-weight: 600; color: var(--slate-500); }
+
+.category-card__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75rem;
+  padding-top: 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--slate-500);
+}
+
+/* Tabela por categoria */
+.table-head { padding: 1.25rem 1.25rem 0.75rem; }
+.table-scroll { width: 100%; overflow-x: auto; }
+
+.data-table {
+  width: 100%;
+  text-align: left;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.data-table th {
+  padding: 0.75rem;
+  background-color: var(--ice-line);
+  color: var(--secondary);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.data-table td { padding: 0.75rem; border-top: 1px solid var(--ice-line); white-space: nowrap; }
+.data-table th:first-child,
+.data-table td:first-child { padding-left: 1rem; }
+.data-table th:last-child,
+.data-table td:last-child { padding-right: 1rem; }
+.data-table tbody tr:nth-child(even) { background-color: #eff4f7; }
+.data-table tbody tr:hover { background-color: var(--ice-alt); }
+.data-table tfoot td { padding-top: 0.875rem; padding-bottom: 0.875rem; background-color: var(--ice-line); font-weight: 700; color: var(--ink); }
+.data-table .num { text-align: center; }
+.data-table .right { text-align: right; }
+.data-table .strong { font-weight: 600; color: var(--ink); }
+.data-table .ok { color: var(--primary); font-weight: 700; }
+.data-table .bad { color: var(--error); font-weight: 500; }
+.data-table .muted { color: var(--slate-500); }
+.data-table .accent { color: var(--brand-blue); font-weight: 700; }
+
+/* Revisão comentada */
+.review-head {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.btn-soft {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: flex-start;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-lg);
+  background-color: var(--ice-line);
+  color: var(--on-secondary-container);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: background-color 150ms var(--ease);
+}
+
+.btn-soft:hover { background-color: var(--secondary-container); }
+
+.review-body { padding: 0.5rem 1.5rem 1.5rem; }
+
+.review-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  background-color: var(--ice-alt);
+  margin-bottom: 1rem;
+}
+
+.review-summary__legend {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.review-summary__legend span { display: flex; align-items: center; gap: 0.25rem; }
+.dot-10 { width: 0.625rem; height: 0.625rem; border-radius: var(--radius-full); display: inline-block; }
+.bg-primary { background-color: var(--primary); }
+.bg-error { background-color: var(--error); }
+.bg-muted { background-color: var(--slate-400); }
+
+.review-list {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+/* [BM-25] Cartão expansível de revisão de questão
+   Content: largura da coluna | box-sizing border-box
+   Padding: 1rem
+   Border:  1px solid transparent (vermelho claro quando a resposta está errada) | border-radius 0.75rem
+   Margin:  0 */
+.review-card {
+  box-sizing: border-box;
+  padding: 1rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-xl);
+  margin: 0;
+  background-color: var(--ice-page);
+}
+
+.review-card.is-wrong { border-color: rgb(186 26 26 / 0.18); }
+
+.review-card summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.review-card summary::-webkit-details-marker { display: none; }
+
+.review-card__top { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+
+.review-card__title {
+  font-size: 0.75rem;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+}
+
+.status-badge {
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.status-badge--ok { background-color: var(--primary-fixed); color: var(--primary); }
+.status-badge--bad { background-color: var(--error-container); color: var(--on-error-container); }
+.status-badge--none { background-color: var(--ice-line); color: var(--secondary); }
+
+.review-card__statement { font-size: 0.875rem; line-height: 1.5; color: var(--ink); white-space: pre-line; }
+
+.review-card__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid rgb(203 213 225 / 0.4);
+  font-size: 12px;
+  color: var(--slate-500);
+}
+
+.review-card__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.review-card[open] .review-card__toggle .material-symbols-outlined { transform: rotate(180deg); }
+
+.review-card__details {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.review-card__figure {
+  padding: 0.5rem;
+  border-radius: var(--radius-lg);
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.review-card__figure img { max-height: 14rem; width: auto; }
+
+.review-options { display: flex; flex-direction: column; gap: 0.375rem; }
+
+.review-option {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 0.625rem;
+  border: 1px solid var(--ice-line);
+  border-radius: var(--radius-lg);
+  background-color: #ffffff;
+  font-size: 0.875rem;
+  color: var(--ink);
+}
+
+.review-option img { height: 3rem; width: auto; }
+.review-option__letter { font-weight: 700; color: var(--slate-500); min-width: 1rem; }
+.review-option__flag { margin-left: auto; font-size: 11px; font-weight: 700; white-space: nowrap; }
+.review-option.is-correct { border-color: var(--primary); background-color: #eef4ff; }
+.review-option.is-correct .review-option__flag { color: var(--primary); }
+.review-option.is-chosen-wrong { border-color: var(--error); background-color: #fff5f4; }
+.review-option.is-chosen-wrong .review-option__flag { color: var(--error); }
+
+.review-card__explanation {
+  padding: 0.75rem;
+  border-radius: var(--radius-lg);
+  background-color: #ffffff;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--secondary);
+}
+
+.review-card__explanation strong { color: var(--ink); }
+
+/* Histórico */
+.history-row a { color: var(--primary); font-weight: 600; }
+.history-row.is-current { background-color: #e7efff !important; }
+
+.results-note {
+  padding-top: 0.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.results-note__box {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: var(--radius-xl);
+  background-color: var(--ice);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.results-empty { padding: 3rem 1.5rem; text-align: center; }
+.results-empty p { margin: 0.5rem 0 1.25rem; color: var(--slate-500); font-size: 0.875rem; }
+
+@media (min-width: 640px) {
+  .results-canvas { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .results-intro__row,
+  .chart-panel__head,
+  .review-head { flex-direction: row; align-items: center; }
+  .segmented, .btn-soft { align-self: auto; }
+  .section-stack__head { flex-direction: row; align-items: baseline; }
+  .score-grid { padding: 2rem; }
+  .iq-box { padding: 1.5rem; }
+  .category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 768px) {
+  .stat-card { flex-basis: calc(25% - 0.75rem); }
+  .review-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  .results-header__inner { padding: 0 3rem; }
+  .results-nav { display: flex; }
+  .results-pill { display: flex; }
+  .results-canvas { padding-left: 2rem; padding-right: 2rem; }
+  .score-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .score-main { grid-column: span 7 / span 7; padding-right: 1.5rem; }
+  .iq-box { grid-column: span 5 / span 5; }
+  .category-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .pie-layout { flex-direction: row; }
+}
+
+
+/* =====================================================================
+   10. UTILITÁRIOS DE ESTADO
+   ===================================================================== */
+.is-hidden { display: none !important; }
+
+.visually-muted { opacity: 0.6; }
+
+:focus-visible { outline: 2px solid var(--brand-blue); outline-offset: 2px; }
+
+
+/* =====================================================================
+   11. RESPONSIVIDADE GERAL
+   Os ajustes de cada tela ficam junto da própria seção (media queries
+   "sm" 640px, "md" 768px e "lg" 1024px, os mesmos breakpoints do Stitch).
+   Aqui ficam só as regras globais para telas pequenas (375px).
+   ===================================================================== */
+@media (max-width: 479px) {
+  .site-header__inner { padding-left: 1rem; padding-right: 1rem; }
+  .hero { padding-left: 1rem; padding-right: 1rem; }
+  .hero__title { font-size: 2.25rem; }
+  .section { padding-left: 1rem; padding-right: 1rem; }
+  .section-title { font-size: 1.75rem; }
+  .start-title__line { white-space: normal; }
+  .results-title { font-size: 1.75rem; }
+  .score-value__number { font-size: 2.5rem; }
+  .auth-options { flex-wrap: wrap; row-gap: 0.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
