@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<!--
+  =====================================================================
+  NeuroMetric — Cognitive Lab
+  Página inicial (index.html)
+
+  Origem: tela "Início" exportada do Google Stitch
+          (docs/stitch-original/inicio-original.html).
+
+  O que foi alterado em relação ao arquivo do Stitch:
+    1. O Tailwind CDN, o bloco <style> e os estilos inline foram
+       substituídos pelo arquivo externo style.css, com os mesmos valores.
+    2. O logotipo, que apontava para uma imagem temporária do Stitch
+       (exibida quebrada), usa o mesmo ícone de marca das telas de login.
+    3. Os links do menu e do rodapé apontam para as páginas reais.
+    4. Frases que prometiam conversão para QI normatizado, curva
+       populacional e "complexidade adaptativa" foram ajustadas, porque
+       esta versão ainda não possui amostra normativa válida.
+    5. O JavaScript (js/main.js e js/inicio.js) troca "Entrar" por "Sair"
+       e o botão principal por "Iniciar teste" quando há sessão ativa.
+
+  Estrutura da página:
+    - Cabeçalho fixo (logo, menu, status do servidor, Entrar, avatar)
+    - Seção 1: hero de tela cheia
+    - Seção 2: "Mais informações" (3 cards + faixa da curva de Gauss)
+    - Seção 3: nota informativa e declaração científica
+    - Rodapé institucional
+  =====================================================================
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NeuroMetric — avaliação cognitiva educacional com 10 questões de raciocínio, cronômetro e revisão comentada dos resultados.">
+  <meta name="theme-color" content="#0058be">
+  <title>NeuroMetric — Cognitive Lab</title>
+
+  <!-- Fontes do design do Stitch: Inter e Material Symbols Outlined -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+
+  <!-- Folha de estilos externa (requisito: CSS separado do HTML) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="page site-body">
+
+  <!-- =============================================================
+       CABEÇALHO FIXO
+       ============================================================= -->
+  <header class="site-header">
+    <div class="site-header__inner">
+
+      <!-- Lado esquerdo: marca + menu -->
+      <div class="site-header__left">
+        <a class="site-brand" href="index.html" aria-label="NeuroMetric — página inicial">
+          <span class="brand-mark brand-mark--sm">
+            <span class="material-symbols-outlined icon-base">psychology</span>
+          </span>
+          <span class="site-brand__text">
+            <span class="site-brand__name">NeuroMetric</span>
+            <span class="site-brand__sub">Cognitive Lab</span>
+          </span>
+        </a>
+
+        <nav class="site-nav" aria-label="Navegação principal">
+          <a class="site-nav__link is-active" href="index.html" aria-current="page">Início</a>
+          <a class="site-nav__link" href="#metodologia">Sobre o teste</a>
+          <a class="site-nav__link" href="iniciar-teste.html">Iniciar teste</a>
+          <a class="site-nav__link" href="#aviso">Outras informações</a>
+        </nav>
+      </div>
+
+      <!-- Lado direito: status, botão de acesso e avatar -->
+      <div class="site-header__right">
+        <div class="server-pill">
+          <span class="dot dot-8 dot-primary anim-pulse"></span>
+          <span>Servidor Ativo • v3.8</span>
+        </div>
+        <a class="btn-header" href="login.html" data-auth-button>Entrar</a>
+        <div class="avatar" data-avatar title="Visitante">
+          <span class="material-symbols-outlined icon-18">person</span>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div>
+
+      <!-- =============================================================
+           SEÇÃO 1 — HERO PRINCIPAL (ocupa a altura da tela)
+           ============================================================= -->
+      <section class="hero" aria-labelledby="hero-title">
+
+        <!-- Gráficos neurais decorativos (SVG e brilhos) -->
+        <div class="hero__decor" aria-hidden="true">
+          <div class="hero__glow"></div>
+          <div class="hero__glow hero__glow--soft"></div>
+
+          <svg class="hero__network" fill="none" viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="neuralGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+                <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.5"></stop>
+                <stop offset="50%" stop-color="#6D5DFB" stop-opacity="0.35"></stop>
+                <stop offset="100%" stop-color="#14213D" stop-opacity="0.1"></stop>
+              </linearGradient>
+            </defs>
+
+            <!-- Órbitas -->
+            <circle cx="500" cy="300" r="230" stroke="url(#neuralGrad)" stroke-dasharray="6 8" stroke-width="1"></circle>
+            <circle cx="500" cy="300" r="140" stroke="currentColor" stroke-opacity="0.4" stroke-width="0.75"></circle>
+            <ellipse cx="500" cy="300" rx="380" ry="170" stroke="url(#neuralGrad)" stroke-opacity="0.3"
+                     stroke-width="1" transform="rotate(-15 500 300)"></ellipse>
+
+            <!-- Eixos -->
+            <line stroke="currentColor" stroke-opacity="0.25" stroke-width="0.5" x1="270" x2="730" y1="300" y2="300"></line>
+            <line stroke="currentColor" stroke-opacity="0.25" stroke-width="0.5" x1="500" x2="500" y1="70" y2="530"></line>
+
+            <!-- Nós sinápticos -->
+            <circle class="anim-ping" cx="360" cy="200" fill="#3B82F6" r="3.5"></circle>
+            <circle cx="360" cy="200" fill="#3B82F6" r="3.5"></circle>
+            <circle cx="640" cy="400" fill="#6D5DFB" r="3"></circle>
+            <circle cx="500" cy="160" fill="#0058be" r="2.5"></circle>
+            <circle cx="500" cy="440" fill="#0058be" r="2.5"></circle>
+            <circle cx="730" cy="300" fill="#3B82F6" r="4" stroke="#ffffff" stroke-width="1"></circle>
+            <circle cx="270" cy="300" fill="#6D5DFB" r="4" stroke="#ffffff" stroke-width="1"></circle>
+          </svg>
+        </div>
+
+        <!-- Equilíbrio de espaço superior -->
+        <div class="hero__spacer"></div>
+
+        <!-- Bloco central -->
+        <div class="hero__center">
+
+          <!-- Selo superior -->
+          <div class="hero__tag">
+            <span class="start-pill__dot"></span>
+            <span class="hero__tag-text">Avaliação Cognitiva • Bateria 2026</span>
+          </div>
+
+          <!-- Título principal -->
+          <h1 class="hero__title" id="hero-title">
+            <span data-hero-title>Realize o login para descobrir seu</span>
+            <span class="hero__qi">QI</span>
+          </h1>
+
+          <!-- Subtítulo -->
+          <p class="hero__lead">
+            Descubra seu desempenho em diferentes habilidades cognitivas através de um teste
+            estruturado em <span data-total>10</span> questões de raciocínio, com tempo registrado
+            e revisão comentada de cada resposta.
+          </p>
+
+          <!-- Botão de ação principal -->
+          <div class="hero__actions">
+            <a class="btn-hero" href="login.html" data-hero-cta>
+              <span class="btn-hero__label">
+                <span data-hero-cta-text>Acessar com Login</span>
+                <span class="material-symbols-outlined icon-18 btn-hero__arrow">arrow_forward</span>
+              </span>
+              <span class="btn-hero__overlay"></span>
+            </a>
+          </div>
+
+          <!-- Indicadores rápidos -->
+          <div class="hero__stats">
+            <div class="hero__stat">
+              <span class="hero__stat-value" data-total>10</span>
+              <span class="label-caps">Questões</span>
+            </div>
+            <div class="hero__stat">
+              <span class="hero__stat-value">Livre</span>
+              <span class="label-caps">Sem limite de tempo</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Indicador de rolagem -->
+        <button class="hero__scroll" type="button" data-scroll-to="metodologia">
+          <span class="label-caps">Role para saber mais</span>
+          <span class="material-symbols-outlined icon-22 anim-bounce">keyboard_arrow_down</span>
+        </button>
+
+      </section>
+
+      <!-- =============================================================
+           SEÇÃO 2 — MAIS INFORMAÇÕES (metodologia)
+           ============================================================= -->
+      <section class="section section--info" id="metodologia" aria-labelledby="metodologia-title">
+
+        <!-- Cabeçalho da seção -->
+        <div class="section-head">
+          <div class="badge-tertiary">
+            <span class="material-symbols-outlined icon-sm">science</span>
+            Arquitetura Psicométrica
+          </div>
+          <h2 class="section-title" id="metodologia-title">Mais informações</h2>
+          <p class="section-lead">
+            Conheça a metodologia estruturada para mensuração do fator geral cognitivo
+            (fator <em>g</em>) com questões de raciocínio, memória e percepção.
+          </p>
+        </div>
+
+        <!-- Grade com 3 cards -->
+        <div class="info-grid">
+
+          <!-- Card 1: Como funciona -->
+          <article class="info-card" id="como-funciona">
+            <div>
+              <div class="info-card__icon">
+                <span class="material-symbols-outlined icon-26">terminal</span>
+              </div>
+              <span class="info-card__step">Etapa 01</span>
+              <h3 class="info-card__title">Como funciona</h3>
+              <p class="info-card__text">
+                Responda a uma seleção de questões de raciocínio e receba uma análise do seu
+                desempenho, com o tempo gasto em cada questão.
+              </p>
+            </div>
+            <div class="info-card__foot">
+              <span class="label-caps">Ordem Fixa de Questões</span>
+              <span class="material-symbols-outlined icon-18 text-tertiary">check_circle</span>
+            </div>
+          </article>
+
+          <!-- Card 2: Avaliação cognitiva -->
+          <article class="info-card info-card--tertiary">
+            <div>
+              <div class="info-card__icon">
+                <span class="material-symbols-outlined icon-26">hub</span>
+              </div>
+              <span class="info-card__step">Etapa 02</span>
+              <h3 class="info-card__title">Avaliação cognitiva</h3>
+              <p class="info-card__text">
+                O teste analisa diferentes tipos de raciocínio, incluindo lógica, padrões,
+                percepção espacial, memória e raciocínio quantitativo.
+              </p>
+            </div>
+            <div class="info-card__foot">
+              <span class="label-caps"><span data-categories>Diversas</span> Habilidades Analisadas</span>
+              <span class="material-symbols-outlined icon-18 text-primary">data_object</span>
+            </div>
+          </article>
+
+          <!-- Card 3: Resultados -->
+          <article class="info-card info-card--container">
+            <div>
+              <div class="info-card__icon">
+                <span class="material-symbols-outlined icon-26">query_stats</span>
+              </div>
+              <span class="info-card__step">Etapa 03</span>
+              <h3 class="info-card__title">Resultados</h3>
+              <p class="info-card__text">
+                Ao finalizar, visualize sua pontuação, desempenho por categoria, tempo de resposta
+                e a revisão de cada questão com a alternativa correta e a explicação.
+              </p>
+            </div>
+            <div class="info-card__foot">
+              <span class="label-caps">Revisão Comentada &amp; Histórico</span>
+              <span class="material-symbols-outlined icon-18 text-tertiary">stacked_line_chart</span>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Faixa explicativa: escala de QI (curva de Gauss) -->
+        <div class="gauss">
+          <div class="gauss__copy">
+            <div class="gauss__eyebrow">
+              <span class="material-symbols-outlined icon-sm">equalizer</span>
+              Padronização Psicométrica Gaussiana
+            </div>
+            <h4 class="gauss__title">Distribuição Centrada em 100</h4>
+            <p class="text-body-sm">
+              Na escala de QI, 68,2% da população se situa entre 85 e 115 pontos. Nesta versão,
+              seu resultado é apresentado como pontuação de desempenho; a conversão para a escala
+              de QI só será exibida quando houver uma amostra normativa válida.
+            </p>
+          </div>
+
+          <!-- Curva de Gauss vetorial -->
+          <div class="gauss__chart">
+            <div class="gauss__scale">
+              <span>70 (-2σ)</span>
+              <strong>100 (μ)</strong>
+              <span>130 (+2σ)</span>
+            </div>
+            <svg class="gauss__svg" fill="none" viewBox="0 0 300 80" aria-hidden="true">
+              <path d="M 10 75 Q 80 74, 110 50 T 150 10 T 190 50 Q 220 74, 290 75"
+                    stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+              <path d="M 10 75 Q 80 74, 110 50 T 150 10 T 190 50 Q 220 74, 290 75 L 290 80 L 10 80 Z"
+                    fill="currentColor" fill-opacity="0.08"></path>
+              <!-- Indicador em μ + 1σ -->
+              <line stroke="#6D5DFB" stroke-dasharray="3 3" stroke-width="1.5" x1="190" x2="190" y1="15" y2="75"></line>
+              <circle cx="190" cy="50" fill="#6D5DFB" r="4"></circle>
+            </svg>
+            <div class="gauss__legend">
+              <span>Faixa Média: 90 - 109</span>
+              <strong>Elevado: &gt; 120</strong>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- =============================================================
+           SEÇÃO 3 — NOTA INFORMATIVA / AVISO LEGAL
+           ============================================================= -->
+      <section class="section section--notice" id="aviso" aria-label="Nota informativa">
+        <div class="notice">
+          <div class="notice__icon">
+            <span class="material-symbols-outlined icon-20">info</span>
+          </div>
+          <div class="notice__body">
+            <p class="notice__title">Nota Informativa &amp; Declaração Científica</p>
+            <p class="notice__text">
+              Este teste fornece uma estimativa de desempenho cognitivo analítico para fins
+              educacionais e de autoavaliação, não substituindo um laudo neuropsicológico clínico
+              presencial realizado por profissionais licenciados.
+            </p>
+          </div>
+          <a class="notice__link" href="termos.html#validade">
+            <span>Critérios de Validade</span>
+            <span class="material-symbols-outlined icon-16">arrow_right_alt</span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- =============================================================
+       RODAPÉ INSTITUCIONAL
+       ============================================================= -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+
+      <div class="site-footer__grid">
+
+        <!-- Coluna 1: marca -->
+        <div class="footer-col footer-col--brand">
+          <div class="footer-brand">
+            <span class="brand-mark">
+              <span class="material-symbols-outlined icon-16">psychology</span>
+            </span>
+            <span class="footer-brand__name">NeuroMetric</span>
+          </div>
+          <p class="footer-text">
+            Plataforma educacional para avaliação cognitiva, mensuração de raciocínio abstrato
+            e análise do desempenho em questões de inteligência.
+          </p>
+        </div>
+
+        <!-- Coluna 2: navegação -->
+        <nav class="footer-col footer-col--nav" aria-label="Navegação do rodapé">
+          <span class="footer-col__title">Navegação</span>
+          <a class="footer-link" href="index.html">Início</a>
+          <a class="footer-link" href="#metodologia">Sobre o teste</a>
+          <a class="footer-link" href="#como-funciona">Como funciona</a>
+          <a class="footer-link" href="#aviso">Mais informações</a>
+        </nav>
+
+        <!-- Coluna 3: rigor científico -->
+        <div class="footer-col footer-col--science">
+          <span class="footer-col__title">Rigor Científico</span>
+          <div class="footer-box">
+            <div class="footer-box__title">
+              <span class="material-symbols-outlined icon-sm">verified</span>
+              <span>Padronização Psicométrica</span>
+            </div>
+            <p class="footer-box__text">
+              A escala de QI usa média 100 e desvio padrão 15. Sem amostra normativa, o resultado
+              é exibido como pontuação de desempenho (0 a 100).
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Aviso de isenção de diagnóstico -->
+      <div class="footer-disclaimer">
+        <span class="material-symbols-outlined icon-20">clinical_notes</span>
+        <p class="footer-disclaimer__text">
+          <strong>Aviso de Isenção de Diagnóstico Clínico:</strong>
+          Os testes e avaliações fornecidos pela plataforma NeuroMetric são estritamente destinados
+          a fins educacionais, de pesquisa e autoavaliação cognitiva. Esta avaliação quantitativa não
+          substitui exame neuropsicológico presencial, consulta médica psiquiátrica ou parecer
+          diagnóstico formal emitido por profissional de saúde registrado.
+        </p>
+      </div>
+
+      <!-- Linha inferior -->
+      <div class="footer-bottom">
+        <span class="label-sm">© 2026 NeuroMetric Cognitive Lab. Todos os direitos reservados.</span>
+        <div class="footer-bottom__links">
+          <a class="label-sm" href="termos.html#privacidade">Privacidade e Sigilo de Dados (LGPD)</a>
+          <span class="footer-bottom__dot"></span>
+          <a class="label-sm" href="termos.html">Termos de Aplicação</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts do front-end (executados no navegador) -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/inicio.js"></script>
+</body>
+</html>

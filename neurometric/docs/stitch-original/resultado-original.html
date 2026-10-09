@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-surface":"#191c1e","tertiary-fixed-dim":"#c5c0ff","on-tertiary":"#ffffff","outline-variant":"#c2c6d6","error":"#ba1a1a","on-secondary":"#ffffff","on-surface-variant":"#424754","primary-fixed-dim":"#adc6ff","primary-container":"#2170e4","surface-variant":"#e0e3e5","on-tertiary-container":"#fffbff","surface-container-high":"#e6e8ea","secondary-container":"#cdd9fe","on-primary-fixed-variant":"#004395","outline":"#727785","secondary-fixed-dim":"#b9c6ea","surface-container":"#eceef0","primary":"#0058be","on-error-container":"#93000a","tertiary-fixed":"#e4dfff","error-container":"#ffdad6","inverse-surface":"#2d3133","surface-dim":"#d8dadc","on-error":"#ffffff","primary-fixed":"#d8e2ff","inverse-on-surface":"#eff1f3","surface-container-low":"#f2f4f6","surface-tint":"#005ac2","secondary":"#525e7d","on-secondary-fixed":"#0d1b36","on-secondary-container":"#525f7e","on-primary-fixed":"#001a42","inverse-primary":"#adc6ff","surface":"#f7f9fb","surface-bright":"#f7f9fb","surface-container-lowest":"#ffffff","on-tertiary-fixed":"#150067","on-primary":"#ffffff","secondary-fixed":"#d9e2ff","surface-container-highest":"#e0e3e5","on-tertiary-fixed-variant":"#3c1fcb","background":"#f7f9fb","on-primary-container":"#fefcff","tertiary":"#523fe0","tertiary-container":"#6c5bfa","on-secondary-fixed-variant":"#3a4664","on-background":"#191c1e"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-xs":"0.25rem","space-sm":"0.5rem","space-lg":"1.5rem","space-md":"1rem","margin":"2rem","gutter":"1.5rem","space-xl":"2.5rem"},"fontFamily":{"label-lg":["Inter"],"body-md":["Inter"],"headline-sm":["Inter"],"headline-lg-mobile":["Inter"],"headline-md":["Inter"],"label-md":["Inter"],"headline-lg":["Inter"],"label-sm":["Inter"],"display":["Inter"],"body-lg":["Inter"],"body-sm":["Inter"]},"fontSize":{"label-lg":["0.875rem",{"lineHeight":"1.2","letterSpacing":"0.025em","fontWeight":"600"}],"body-md":["1rem",{"lineHeight":"1.5","letterSpacing":"0","fontWeight":"400"}],"headline-sm":["1.25rem",{"lineHeight":"1.4","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-lg-mobile":["1.75rem",{"lineHeight":"1.25","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-md":["1.5rem",{"lineHeight":"1.3","letterSpacing":"-0.015em","fontWeight":"600"}],"label-md":["0.75rem",{"lineHeight":"1.2","letterSpacing":"0.05em","fontWeight":"600"}],"headline-lg":["2.25rem",{"lineHeight":"1.25","letterSpacing":"-0.02em","fontWeight":"600"}],"label-sm":["0.6875rem",{"lineHeight":"1.2","letterSpacing":"0.05em","fontWeight":"500"}],"display":["3rem",{"lineHeight":"1.15","letterSpacing":"-0.025em","fontWeight":"700"}],"body-lg":["1.125rem",{"lineHeight":"1.6","letterSpacing":"-0.005em","fontWeight":"400"}],"body-sm":["0.875rem",{"lineHeight":"1.5","letterSpacing":"0","fontWeight":"400"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm" data-path="overview" href="#"><div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-on-primary-container text-[20px]">psychology</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface">NeuroMetric</span><span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">Cognitive Diagnostics</span></div></a><nav class="hidden md:flex items-center gap-space-sm ml-space-lg" data-active-classes="bg-secondary-container text-on-secondary-container font-label-lg text-label-lg rounded-lg"><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" data-path="overview" href="#">Visão Geral</a><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" data-path="test-battery" href="#">Bateria de Testes</a><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" data-path="normative-data" href="#">Dados Normativos</a><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" data-path="clinical-validation" href="#">Validação Científica</a></nav></div><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs px-space-md py-1 rounded-full bg-surface-container-high"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface-variant tracking-wide font-medium">Servidor Ativo • v4.2</span></div><div class="flex items-center gap-space-xs px-space-md py-1 rounded-full bg-surface-container"><span class="material-symbols-outlined text-secondary text-[16px]">timer</span><span class="font-label-md text-label-md text-on-surface tabular-nums">00:45:00</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-10rem)]"><div class="flex flex-col w-full">
+<!-- Dynamic Override of Shell Nav & Global Header Sync -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Ajustar a navegação do shell para a ordem e nomenclatura solicitada
+      const navContainer = document.querySelector('header nav');
+      if (navContainer) {
+        navContainer.innerHTML = `
+          <a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="/">Início</a>
+          <a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="/sobre">Sobre o teste</a>
+          <a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="/teste">Iniciar teste</a>
+          <a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="/informacoes">Outras informações</a>
+        `;
+      }
+      // Ajustar lado direito do shell: Servidor Ativo + Link Sair + Avatar
+      const headerRight = document.querySelector('header .max-w-7xl > div:last-child');
+      if (headerRight) {
+        headerRight.innerHTML = `
+          <div class="hidden sm:flex items-center gap-space-xs px-space-md py-1 rounded-full bg-surface-container-high">
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            <span class="font-label-sm text-label-sm text-on-surface-variant tracking-wide font-medium">Servidor Ativo • v4.2</span>
+          </div>
+          <a href="/logout" class="font-label-md text-label-md text-secondary hover:text-on-surface transition-colors px-2 py-1">Sair</a>
+          <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-sm">
+            <span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
+          </div>
+        `;
+      }
+    });
+  </script>
+<!-- Container Geral da Tela de Resultados -->
+<div class="w-full bg-[#EAF1F5] text-on-surface py-8 px-4 sm:px-6 lg:px-8">
+<div class="max-w-6xl mx-auto flex flex-col gap-6">
+<!-- 2. CABEÇALHO DO RESULTADO -->
+<section class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high text-[#525E7D] font-label-sm text-label-sm tracking-wider uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            RESULTADO DA AVALIAÇÃO COGNITIVA • TENTATIVA #<span id="attempt-number">36</span>
+</span>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1">
+<div>
+<h1 class="font-headline-lg text-headline-lg font-extrabold text-[#14213D] tracking-tight">Seu resultado</h1>
+<p class="font-body-sm text-body-sm text-[#64748B]">
+              Concluído em <span class="font-semibold text-on-surface" id="completion-date">24/09/2026</span> às <span class="font-semibold text-on-surface" id="completion-time">14:13</span>
+</p>
+</div>
+<div>
+<button class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg shadow-sm transition-all duration-200 active:scale-[0.98]" id="btn-new-test" onclick="window.location.reload();">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+<span>Novo teste</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 3. CARD PRINCIPAL DE PONTUAÇÃO -->
+<section class="bg-[#F5F9FB] rounded-xl shadow-sm overflow-hidden">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 sm:p-8 items-stretch">
+<!-- Coluna Esquerda: Pontuação -->
+<div class="lg:col-span-7 flex flex-col justify-between pr-0 lg:pr-6">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="font-label-sm text-label-sm uppercase font-bold tracking-wider text-[#64748B]">PONTUAÇÃO DE DESEMPENHO</span>
+</div>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-display text-display font-black text-[#14213D] tracking-tight" id="score-val">84,3</span>
+<span class="font-headline-md text-headline-md font-bold text-[#64748B]">/ 100</span>
+</div>
+<!-- Barra de Progresso Gradiente -->
+<div class="w-full bg-[#E2E8EE] h-3.5 rounded-full overflow-hidden p-0.5">
+<div class="bg-gradient-to-r from-[#3B82F6] to-[#6D5DFB] h-full rounded-full transition-all duration-1000 ease-out" style="width: 84.3%;"></div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-[#64748B] mt-4 leading-relaxed">
+              Percentual dos pontos obtidos em relação ao máximo possível nas 60 questões sorteadas (acertos ponderados pela dificuldade, com bônus de rapidez de até 20%).
+            </p>
+</div>
+<!-- Coluna Direita: Status QI Amostral -->
+<div class="lg:col-span-5 bg-[#F0F5F8] rounded-xl p-5 sm:p-6 flex flex-col justify-center">
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-md text-label-md font-semibold text-on-surface-variant uppercase tracking-wider">QI estimado</span>
+<span class="material-symbols-outlined text-[#3B82F6] text-[20px]">science</span>
+</div>
+<div class="mb-3">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#E2E8EE] text-[#0058BE] font-label-md text-label-md font-bold tracking-wide uppercase">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+                AGUARDANDO AMOSTRA DE REFERÊNCIA
+              </div>
+</div>
+<p class="font-body-sm text-body-sm text-[#64748B] leading-relaxed">
+              Seu resultado ainda não foi convertido para uma escala de QI porque a plataforma está construindo sua amostra de referência de alta precisão estatística.
+            </p>
+</div>
+</div>
+</section>
+<!-- 4. 8 CARDS DE ESTATÍSTICAS (4 colunas x 2 linhas) -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- 1. Questões -->
+<div class="bg-[#F5F9FB] rounded-xl p-4 shadow-sm flex flex-col justify-between transition-transform duration-150 hover:-translate-y-0.5">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm font-bold text-[#64748B] uppercase tracking-wider">Questões</span>
+<span class="material-symbols-outlined text-[#525E7D] text-[18px]">fact_check</span>
+</div>
+<div class="font-headline-md text-headline-md font-extrabold text-[#14213D]">60</div>
+<span class="font-label-sm text-label-sm text-[#64748B] mt-1">bateria completa</span>
+</div>
+<!-- 2. Acertos -->
+<div class="bg-[#F5F9FB] rounded-xl p-4 shadow-sm flex flex-col justify-between transition-transform duration-150 hover:-translate-y-0.5">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm font-bold text-[#64748B] uppercase tracking-wider">Acertos</span>
+<span class="material-symbols-outlined text-primary text-[18px]">check_circle</span>
+</div>
+<div class="font-headline-md text-headline-md font-extrabold text-[#14213D]">54</div>
+<span class="font-label-sm text-label-sm text-[#0058BE] mt-1 font-medium">90% assertividade</span>
+</div>
+<!-- 3. Erros -->
+<div class="bg-[#F5F9FB] rounded-xl p-4 shadow-sm flex flex-col justify-between transition-transform duration-150 hover:-translate-y-0.5">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm font-bold text-[#64748B] uppercase tracking-wider">Erros</span>
+<span class="material-symbols-outlined text-error text-[18px]">cancel</span>
+</div>
+<div class="font-headline-md text-headline-md font-extrabold text-[#14213D]">6</div>
+<span class="font-label-sm text-label-sm text-error mt-1">respostas incorretas</span>
+</div>
+<!-- 4. Precisão -->
+<div class="bg-[#F5F9FB] rounded-xl p-4 shadow-sm flex flex-col justify-between transition-transform duration-150 hover:-translate-y-0.5">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm font-bold text-[#64748B] uppercase tracking-wider">Precisão</span>
+<span class="material-symbols-outlined text-tertiary text-[18px]">adjust</span>
+</div>
+<div class="font-headline-md text-headline-md font-extrabold text-[#14213D]">90,0%</div>
+<span class="font-label-sm text-label-sm text-[#64748B] mt-1">taxa líquida</span>
+</div>
+<!-- 5. Tempo Total -->
+<div class="bg-[#F5F9FB] rounded-xl p-4 shadow-sm flex flex-col justify-between transition-transform duration-150 hover:-translate-y-0.5">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm font-bold text-[#64748B] uppercase tracking-wider">Tempo Total</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">hourglass_top</span>
+</div>
+<div class="font-headline-md text-headline-md font-extrabold text-[#14213D]">19min 26s</div>
+<span class="font-label-sm text-label-sm text-[#64748B] mt-1">limite máx: 45min</span>
+</div>
+<!-- 6. Tempo Médio -->
+<div class="bg-[#F5F9FB] rounded-xl p-4 shadow-sm flex flex-col justify-between transition-transform duration-150 hover:-translate-y-0.5">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm font-bold text-[#64748B] uppercase tracking-wider">Tempo Médio</span>
+<span class="material-symbols-outlined text-[#525E7D] text-[18px]">timer</span>
+</div>
+<div class="font-headline-md text-headline-md font-extrabold text-[#14213D]">19,4s</div>
+<span class="font-label-sm text-label-sm text-[#64748B] mt-1">por questão</span>
+</div>
+<!-- 7. Pontuação Total -->
+<div class="bg-[#F5F9FB] rounded-xl p-4 shadow-sm flex flex-col justify-between transition-transform duration-150 hover:-translate-y-0.5">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm font-bold text-[#64748B] uppercase tracking-wider">Pontuação Total</span>
+<span class="material-symbols-outlined text-primary text-[18px]">toll</span>
+</div>
+<div class="font-headline-md text-headline-md font-extrabold text-[#14213D]">8.803,0</div>
+<span class="font-label-sm text-label-sm text-[#64748B] mt-1">pontos consolidados</span>
+</div>
+<!-- 8. Pontuação Máxima -->
+<div class="bg-[#F5F9FB] rounded-xl p-4 shadow-sm flex flex-col justify-between transition-transform duration-150 hover:-translate-y-0.5">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-sm text-label-sm font-bold text-[#64748B] uppercase tracking-wider">Pontuação Máxima</span>
+<span class="material-symbols-outlined text-[#6D5DFB] text-[18px]">trophy</span>
+</div>
+<div class="font-headline-md text-headline-md font-extrabold text-[#14213D]">10.440,0</div>
+<span class="font-label-sm text-label-sm text-[#64748B] mt-1 truncate">P_base × 1,20 por item</span>
+</div>
+</section>
+<!-- 5. GRÁFICO PRINCIPAL COM SELETOR INTERATIVO -->
+<section class="bg-[#F5F9FB] rounded-xl shadow-sm p-6 flex flex-col gap-4">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<span class="font-label-sm text-label-sm uppercase font-bold tracking-wider text-[#64748B]">VISUALIZAÇÃO</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-[#14213D]" id="chart-main-title">Evolução do desempenho acumulado</h2>
+</div>
+<!-- Botões de Troca de Gráfico -->
+<div class="inline-flex p-1 rounded-lg bg-[#E2E8EE] self-start sm:self-auto" id="chart-toggle-group">
+<button class="px-3.5 py-1.5 rounded-md font-label-md text-label-md font-semibold transition-colors bg-[#3B82F6] text-white" id="btn-chart-line" onclick="setChartType('line')">Linha</button>
+<button class="px-3.5 py-1.5 rounded-md font-label-md text-label-md font-semibold transition-colors text-on-surface-variant hover:text-on-surface" id="btn-chart-bar" onclick="setChartType('bar')">Barras</button>
+<button class="px-3.5 py-1.5 rounded-md font-label-md text-label-md font-semibold transition-colors text-on-surface-variant hover:text-on-surface" id="btn-chart-pie" onclick="setChartType('pie')">Pizza</button>
+</div>
+</div>
+<!-- Renderização do Gráfico Interativo -->
+<div class="w-full bg-[#F0F5F8] rounded-xl p-4 min-h-[340px] flex items-center justify-center overflow-x-auto">
+<!-- Modo Linha (Padrão) -->
+<div class="w-full flex flex-col items-center" id="chart-view-line">
+<svg class="w-full h-64 overflow-visible" preserveaspectratio="none" viewbox="0 0 880 260">
+<defs>
+<lineargradient id="lineGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#3B82F6" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#3B82F6" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<!-- Grid Horizontal -->
+<line stroke="#CBD5E1" stroke-dasharray="3 3" stroke-width="1" x1="40" x2="860" y1="30" y2="30"></line>
+<text fill="#64748B" font-family="Inter" font-size="10" text-anchor="end" x="32" y="34">100%</text>
+<line stroke="#CBD5E1" stroke-dasharray="3 3" stroke-width="1" x1="40" x2="860" y1="80" y2="80"></line>
+<text fill="#64748B" font-family="Inter" font-size="10" text-anchor="end" x="32" y="84">80%</text>
+<line stroke="#CBD5E1" stroke-dasharray="3 3" stroke-width="1" x1="40" x2="860" y1="130" y2="130"></line>
+<text fill="#64748B" font-family="Inter" font-size="10" text-anchor="end" x="32" y="134">60%</text>
+<line stroke="#CBD5E1" stroke-dasharray="3 3" stroke-width="1" x1="40" x2="860" y1="180" y2="180"></line>
+<text fill="#64748B" font-family="Inter" font-size="10" text-anchor="end" x="32" y="184">40%</text>
+<line stroke="#94A3B8" stroke-width="1" x1="40" x2="860" y1="230" y2="230"></line>
+<text fill="#64748B" font-family="Inter" font-size="10" text-anchor="end" x="32" y="234">0%</text>
+<!-- Área do Gráfico -->
+<polygon fill="url(#lineGrad)" points="50,230 50,60 100,55 160,50 220,68 280,62 340,58 400,75 460,70 520,65 580,82 640,78 700,74 760,68 820,70 850,69 850,230"></polygon>
+<!-- Linha Contínua de Desempenho Acumulado -->
+<polyline fill="none" points="50,60 100,55 160,50 220,68 280,62 340,58 400,75 460,70 520,65 580,82 640,78 700,74 760,68 820,70 850,69" stroke="#3B82F6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></polyline>
+<!-- Pontos Normais (Acertos) -->
+<g fill="#3B82F6">
+<circle cx="50" cy="60" r="3.5"></circle>
+<circle cx="100" cy="55" r="3.5"></circle>
+<circle cx="160" cy="50" r="3.5"></circle>
+<circle cx="280" cy="62" r="3.5"></circle>
+<circle cx="340" cy="58" r="3.5"></circle>
+<circle cx="460" cy="70" r="3.5"></circle>
+<circle cx="520" cy="65" r="3.5"></circle>
+<circle cx="640" cy="78" r="3.5"></circle>
+<circle cx="700" cy="74" r="3.5"></circle>
+<circle cx="760" cy="68" r="3.5"></circle>
+<circle cx="820" cy="70" r="3.5"></circle>
+<circle cx="850" cy="69" r="3.5"></circle>
+</g>
+<!-- Pontos de Erro em Destaque Vermelho (6 erros totais) -->
+<g fill="#BA1A1A" stroke="#FFFFFF" stroke-width="1.5">
+<circle cx="220" cy="68" r="5"></circle>
+<circle cx="400" cy="75" r="5"></circle>
+<circle cx="580" cy="82" r="5"></circle>
+<circle cx="670" cy="76" r="5"></circle>
+<circle cx="730" cy="71" r="5"></circle>
+<circle cx="790" cy="71" r="5"></circle>
+</g>
+<!-- Marcadores X -->
+<text fill="#64748B" font-family="Inter" font-size="10" text-anchor="middle" x="50" y="248">Q1</text>
+<text fill="#64748B" font-family="Inter" font-size="10" text-anchor="middle" x="220" y="248">Q15</text>
+<text fill="#64748B" font-family="Inter" font-size="10" text-anchor="middle" x="400" y="248">Q30</text>
+<text fill="#64748B" font-family="Inter" font-size="10" text-anchor="middle" x="580" y="248">Q45</text>
+<text fill="#64748B" font-family="Inter" font-size="10" text-anchor="middle" x="850" y="248">Q60</text>
+</svg>
+</div>
+<!-- Modo Barras (Renderizado dinamicamente via JS com paleta multicolorida elegante) -->
+<div class="w-full hidden flex-col items-center" id="chart-view-bar">
+<!-- Preenchido dinamicamente por renderBarChart() -->
+</div>
+<!-- Modo Pizza / Donut (Renderizado dinamicamente via JS com cores individuais e legenda) -->
+<div class="w-full hidden flex-col lg:flex-row items-center justify-center gap-8 py-4 px-2" id="chart-view-pie">
+<!-- Preenchido dinamicamente por renderPieChart() -->
+</div>
+</div>
+<p class="font-label-sm text-label-sm text-[#64748B] leading-relaxed" id="chart-caption-text">
+          Após cada questão: pontos acumulados ÷ pontos máximos acumulados × 100. Pontos vermelhos indicam respostas incorretas. A curva de distribuição de QI só é exibida quando houver parâmetros normativos calibrados.
+        </p>
+</section>
+<!-- 6. MAPA COGNITIVO (8 CARDS DE CATEGORIAS) -->
+<section class="flex flex-col gap-4">
+<div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+<div>
+<span class="font-label-sm text-label-sm uppercase font-bold tracking-wider text-[#64748B]">RESULTADO POR CATEGORIA</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-[#14213D]">Mapa cognitivo</h2>
+</div>
+<span class="font-label-sm text-label-sm text-[#64748B]">
+            Desempenho normalizado = pontos obtidos ÷ pontos máximos da categoria × 100
+          </span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Categoria 1 -->
+<div class="bg-[#F5F9FB] rounded-xl p-4 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<h3 class="font-label-lg text-label-lg font-bold text-[#14213D]">Sequências numéricas</h3>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-[#E2E8EE] text-[#525E7D] font-medium">10/10</span>
+</div>
+<div class="flex items-baseline gap-1 mt-2">
+<span class="font-headline-sm text-headline-sm font-extrabold text-[#14213D]">90,7</span>
+<span class="font-label-md text-label-md text-[#64748B]">/100</span>
+</div>
+<div class="w-full bg-[#E2E8EE] h-2 rounded-full overflow-hidden mt-2">
+<div class="bg-gradient-to-r from-[#3B82F6] to-[#6D5DFB] h-full rounded-full" style="width: 90.7%;"></div>
+</div>
+</div>
+<div class="flex justify-between items-center text-[#64748B] font-label-sm text-label-sm mt-3 pt-2">
+<span>Média: <strong>26,6s</strong></span>
+<span>Precisão: <strong class="text-primary">100%</strong></span>
+</div>
+</div>
+<!-- Categoria 2 -->
+<div class="bg-[#F5F9FB] rounded-xl p-4 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<h3 class="font-label-lg text-label-lg font-bold text-[#14213D]">Padrões/matrizes</h3>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-[#E2E8EE] text-[#525E7D] font-medium">11/12</span>
+</div>
+<div class="flex items-baseline gap-1 mt-2">
+<span class="font-headline-sm text-headline-sm font-extrabold text-[#14213D]">82,5</span>
+<span class="font-label-md text-label-md text-[#64748B]">/100</span>
+</div>
+<div class="w-full bg-[#E2E8EE] h-2 rounded-full overflow-hidden mt-2">
+<div class="bg-gradient-to-r from-[#3B82F6] to-[#6D5DFB] h-full rounded-full" style="width: 82.5%;"></div>
+</div>
+</div>
+<div class="flex justify-between items-center text-[#64748B] font-label-sm text-label-sm mt-3 pt-2">
+<span>Média: <strong>38,1s</strong></span>
+<span>Precisão: <strong class="text-primary">92%</strong></span>
+</div>
+</div>
+<!-- Categoria 3 -->
+<div class="bg-[#F5F9FB] rounded-xl p-4 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<h3 class="font-label-lg text-label-lg font-bold text-[#14213D]">Analogias</h3>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-[#E2E8EE] text-[#525E7D] font-medium">6/6</span>
+</div>
+<div class="flex items-baseline gap-1 mt-2">
+<span class="font-headline-sm text-headline-sm font-extrabold text-[#14213D]">91,0</span>
+<span class="font-label-md text-label-md text-[#64748B]">/100</span>
+</div>
+<div class="w-full bg-[#E2E8EE] h-2 rounded-full overflow-hidden mt-2">
+<div class="bg-gradient-to-r from-[#3B82F6] to-[#6D5DFB] h-full rounded-full" style="width: 91.0%;"></div>
+</div>
+</div>
+<div class="flex justify-between items-center text-[#64748B] font-label-sm text-label-sm mt-3 pt-2">
+<span>Média: <strong>21,5s</strong></span>
+<span>Precisão: <strong class="text-primary">100%</strong></span>
+</div>
+</div>
+<!-- Categoria 4 -->
+<div class="bg-[#F5F9FB] rounded-xl p-4 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<h3 class="font-label-lg text-label-lg font-bold text-[#14213D]">Lógica dedutiva</h3>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-[#E2E8EE] text-[#525E7D] font-medium">7/8</span>
+</div>
+<div class="flex items-baseline gap-1 mt-2">
+<span class="font-headline-sm text-headline-sm font-extrabold text-[#14213D]">79,4</span>
+<span class="font-label-md text-label-md text-[#64748B]">/100</span>
+</div>
+<div class="w-full bg-[#E2E8EE] h-2 rounded-full overflow-hidden mt-2">
+<div class="bg-gradient-to-r from-[#3B82F6] to-[#6D5DFB] h-full rounded-full" style="width: 79.4%;"></div>
+</div>
+</div>
+<div class="flex justify-between items-center text-[#64748B] font-label-sm text-label-sm mt-3 pt-2">
+<span>Média: <strong>45,0s</strong></span>
+<span>Precisão: <strong class="text-primary">88%</strong></span>
+</div>
+</div>
+<!-- Categoria 5 -->
+<div class="bg-[#F5F9FB] rounded-xl p-4 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<h3 class="font-label-lg text-label-lg font-bold text-[#14213D]">Raciocínio espacial</h3>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-[#E2E8EE] text-[#525E7D] font-medium">7/8</span>
+</div>
+<div class="flex items-baseline gap-1 mt-2">
+<span class="font-headline-sm text-headline-sm font-extrabold text-[#14213D]">85,0</span>
+<span class="font-label-md text-label-md text-[#64748B]">/100</span>
+</div>
+<div class="w-full bg-[#E2E8EE] h-2 rounded-full overflow-hidden mt-2">
+<div class="bg-gradient-to-r from-[#3B82F6] to-[#6D5DFB] h-full rounded-full" style="width: 85.0%;"></div>
+</div>
+</div>
+<div class="flex justify-between items-center text-[#64748B] font-label-sm text-label-sm mt-3 pt-2">
+<span>Média: <strong>42,3s</strong></span>
+<span>Precisão: <strong class="text-primary">88%</strong></span>
+</div>
+</div>
+<!-- Categoria 6 -->
+<div class="bg-[#F5F9FB] rounded-xl p-4 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<h3 class="font-label-lg text-label-lg font-bold text-[#14213D]">Classificação</h3>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-[#E2E8EE] text-[#525E7D] font-medium">5/5</span>
+</div>
+<div class="flex items-baseline gap-1 mt-2">
+<span class="font-headline-sm text-headline-sm font-extrabold text-[#14213D]">94,1</span>
+<span class="font-label-md text-label-md text-[#64748B]">/100</span>
+</div>
+<div class="w-full bg-[#E2E8EE] h-2 rounded-full overflow-hidden mt-2">
+<div class="bg-gradient-to-r from-[#3B82F6] to-[#6D5DFB] h-full rounded-full" style="width: 94.1%;"></div>
+</div>
+</div>
+<div class="flex justify-between items-center text-[#64748B] font-label-sm text-label-sm mt-3 pt-2">
+<span>Média: <strong>19,4s</strong></span>
+<span>Precisão: <strong class="text-primary">100%</strong></span>
+</div>
+</div>
+<!-- Categoria 7 -->
+<div class="bg-[#F5F9FB] rounded-xl p-4 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<h3 class="font-label-lg text-label-lg font-bold text-[#14213D]">Quantitativo</h3>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-[#E2E8EE] text-[#525E7D] font-medium">4/5</span>
+</div>
+<div class="flex items-baseline gap-1 mt-2">
+<span class="font-headline-sm text-headline-sm font-extrabold text-[#14213D]">76,8</span>
+<span class="font-label-md text-label-md text-[#64748B]">/100</span>
+</div>
+<div class="w-full bg-[#E2E8EE] h-2 rounded-full overflow-hidden mt-2">
+<div class="bg-gradient-to-r from-[#3B82F6] to-[#6D5DFB] h-full rounded-full" style="width: 76.8%;"></div>
+</div>
+</div>
+<div class="flex justify-between items-center text-[#64748B] font-label-sm text-label-sm mt-3 pt-2">
+<span>Média: <strong>54,0s</strong></span>
+<span>Precisão: <strong class="text-primary">80%</strong></span>
+</div>
+</div>
+<!-- Categoria 8 -->
+<div class="bg-[#F5F9FB] rounded-xl p-4 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<h3 class="font-label-lg text-label-lg font-bold text-[#14213D]">Desafios mistos</h3>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-[#E2E8EE] text-[#525E7D] font-medium">4/6</span>
+</div>
+<div class="flex items-baseline gap-1 mt-2">
+<span class="font-headline-sm text-headline-sm font-extrabold text-[#14213D]">86,5</span>
+<span class="font-label-md text-label-md text-[#64748B]">/100</span>
+</div>
+<div class="w-full bg-[#E2E8EE] h-2 rounded-full overflow-hidden mt-2">
+<div class="bg-gradient-to-r from-[#3B82F6] to-[#6D5DFB] h-full rounded-full" style="width: 86.5%;"></div>
+</div>
+</div>
+<div class="flex justify-between items-center text-[#64748B] font-label-sm text-label-sm mt-3 pt-2">
+<span>Média: <strong>44,8s</strong></span>
+<span>Precisão: <strong class="text-primary">67%</strong></span>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. TABELA DETALHADA -->
+<section class="bg-[#F5F9FB] rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="p-5 pb-3">
+<span class="font-label-sm text-label-sm uppercase font-bold tracking-wider text-[#64748B]">DETALHAMENTO ESTRUTURADO</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-[#14213D]">Desempenho psicométrico por categoria</h2>
+</div>
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left font-body-sm text-body-sm border-collapse">
+<thead>
+<tr class="bg-[#E2E8EE] text-[#525E7D] font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-4">Categoria</th>
+<th class="py-3 px-3 text-center">Questões</th>
+<th class="py-3 px-3 text-center">Acertos</th>
+<th class="py-3 px-3 text-center">Erros</th>
+<th class="py-3 px-3 text-center">Precisão</th>
+<th class="py-3 px-3 text-right">Tempo Total</th>
+<th class="py-3 px-3 text-right">Tempo Médio</th>
+<th class="py-3 px-3 text-right">Pontos</th>
+<th class="py-3 px-3 text-right">Máximo</th>
+<th class="py-3 px-4 text-right">Normalizado</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#E2E8EE]">
+<tr class="bg-[#F5F9FB] hover:bg-[#F0F5F8] transition-colors">
+<td class="py-3 px-4 font-semibold text-[#14213D]">Sequências numéricas</td>
+<td class="py-3 px-3 text-center">10</td>
+<td class="py-3 px-3 text-center text-primary font-bold">10</td>
+<td class="py-3 px-3 text-center text-secondary">0</td>
+<td class="py-3 px-3 text-center font-medium">100%</td>
+<td class="py-3 px-3 text-right">04m 26s</td>
+<td class="py-3 px-3 text-right">26,6s</td>
+<td class="py-3 px-3 text-right font-medium">1.632,6</td>
+<td class="py-3 px-3 text-right text-[#64748B]">1.800,0</td>
+<td class="py-3 px-4 text-right font-bold text-[#3B82F6]">90,7</td>
+</tr>
+<tr class="bg-[#EFF4F7] hover:bg-[#F0F5F8] transition-colors">
+<td class="py-3 px-4 font-semibold text-[#14213D]">Padrões/matrizes</td>
+<td class="py-3 px-3 text-center">12</td>
+<td class="py-3 px-3 text-center text-primary font-bold">11</td>
+<td class="py-3 px-3 text-center text-error font-medium">1</td>
+<td class="py-3 px-3 text-center font-medium">92%</td>
+<td class="py-3 px-3 text-right">07m 37s</td>
+<td class="py-3 px-3 text-right">38,1s</td>
+<td class="py-3 px-3 text-right font-medium">1.782,0</td>
+<td class="py-3 px-3 text-right text-[#64748B]">2.160,0</td>
+<td class="py-3 px-4 text-right font-bold text-[#3B82F6]">82,5</td>
+</tr>
+<tr class="bg-[#F5F9FB] hover:bg-[#F0F5F8] transition-colors">
+<td class="py-3 px-4 font-semibold text-[#14213D]">Analogias</td>
+<td class="py-3 px-3 text-center">6</td>
+<td class="py-3 px-3 text-center text-primary font-bold">6</td>
+<td class="py-3 px-3 text-center text-secondary">0</td>
+<td class="py-3 px-3 text-center font-medium">100%</td>
+<td class="py-3 px-3 text-right">02m 09s</td>
+<td class="py-3 px-3 text-right">21,5s</td>
+<td class="py-3 px-3 text-right font-medium">982,8</td>
+<td class="py-3 px-3 text-right text-[#64748B]">1.080,0</td>
+<td class="py-3 px-4 text-right font-bold text-[#3B82F6]">91,0</td>
+</tr>
+<tr class="bg-[#EFF4F7] hover:bg-[#F0F5F8] transition-colors">
+<td class="py-3 px-4 font-semibold text-[#14213D]">Lógica dedutiva</td>
+<td class="py-3 px-3 text-center">8</td>
+<td class="py-3 px-3 text-center text-primary font-bold">7</td>
+<td class="py-3 px-3 text-center text-error font-medium">1</td>
+<td class="py-3 px-3 text-center font-medium">88%</td>
+<td class="py-3 px-3 text-right">06m 00s</td>
+<td class="py-3 px-3 text-right">45,0s</td>
+<td class="py-3 px-3 text-right font-medium">1.143,4</td>
+<td class="py-3 px-3 text-right text-[#64748B]">1.440,0</td>
+<td class="py-3 px-4 text-right font-bold text-[#3B82F6]">79,4</td>
+</tr>
+<tr class="bg-[#F5F9FB] hover:bg-[#F0F5F8] transition-colors">
+<td class="py-3 px-4 font-semibold text-[#14213D]">Raciocínio espacial</td>
+<td class="py-3 px-3 text-center">8</td>
+<td class="py-3 px-3 text-center text-primary font-bold">7</td>
+<td class="py-3 px-3 text-center text-error font-medium">1</td>
+<td class="py-3 px-3 text-center font-medium">88%</td>
+<td class="py-3 px-3 text-right">05m 38s</td>
+<td class="py-3 px-3 text-right">42,3s</td>
+<td class="py-3 px-3 text-right font-medium">1.224,0</td>
+<td class="py-3 px-3 text-right text-[#64748B]">1.440,0</td>
+<td class="py-3 px-4 text-right font-bold text-[#3B82F6]">85,0</td>
+</tr>
+<tr class="bg-[#EFF4F7] hover:bg-[#F0F5F8] transition-colors">
+<td class="py-3 px-4 font-semibold text-[#14213D]">Classificação</td>
+<td class="py-3 px-3 text-center">5</td>
+<td class="py-3 px-3 text-center text-primary font-bold">5</td>
+<td class="py-3 px-3 text-center text-secondary">0</td>
+<td class="py-3 px-3 text-center font-medium">100%</td>
+<td class="py-3 px-3 text-right">01m 37s</td>
+<td class="py-3 px-3 text-right">19,4s</td>
+<td class="py-3 px-3 text-right font-medium">846,9</td>
+<td class="py-3 px-3 text-right text-[#64748B]">900,0</td>
+<td class="py-3 px-4 text-right font-bold text-[#3B82F6]">94,1</td>
+</tr>
+<tr class="bg-[#F5F9FB] hover:bg-[#F0F5F8] transition-colors">
+<td class="py-3 px-4 font-semibold text-[#14213D]">Quantitativo</td>
+<td class="py-3 px-3 text-center">5</td>
+<td class="py-3 px-3 text-center text-primary font-bold">4</td>
+<td class="py-3 px-3 text-center text-error font-medium">1</td>
+<td class="py-3 px-3 text-center font-medium">80%</td>
+<td class="py-3 px-3 text-right">04m 30s</td>
+<td class="py-3 px-3 text-right">54,0s</td>
+<td class="py-3 px-3 text-right font-medium">691,2</td>
+<td class="py-3 px-3 text-right text-[#64748B]">900,0</td>
+<td class="py-3 px-4 text-right font-bold text-[#3B82F6]">76,8</td>
+</tr>
+<tr class="bg-[#EFF4F7] hover:bg-[#F0F5F8] transition-colors">
+<td class="py-3 px-4 font-semibold text-[#14213D]">Desafios mistos</td>
+<td class="py-3 px-3 text-center">6</td>
+<td class="py-3 px-3 text-center text-primary font-bold">4</td>
+<td class="py-3 px-3 text-center text-error font-medium">2</td>
+<td class="py-3 px-3 text-center font-medium">67%</td>
+<td class="py-3 px-3 text-right">04m 29s</td>
+<td class="py-3 px-3 text-right">44,8s</td>
+<td class="py-3 px-3 text-right font-medium">934,2</td>
+<td class="py-3 px-3 text-right text-[#64748B]">1.080,0</td>
+<td class="py-3 px-4 text-right font-bold text-[#3B82F6]">86,5</td>
+</tr>
+</tbody>
+<!-- Linha de TOTAL -->
+<tfoot>
+<tr class="bg-[#E2E8EE] font-bold text-[#14213D]">
+<td class="py-3.5 px-4">TOTAL CONSOLIDADO</td>
+<td class="py-3.5 px-3 text-center">60</td>
+<td class="py-3.5 px-3 text-center text-primary">54</td>
+<td class="py-3.5 px-3 text-center text-error">6</td>
+<td class="py-3.5 px-3 text-center">90,0%</td>
+<td class="py-3.5 px-3 text-right">19m 26s</td>
+<td class="py-3.5 px-3 text-right">19,4s</td>
+<td class="py-3.5 px-3 text-right">8.803,0</td>
+<td class="py-3.5 px-3 text-right text-[#64748B]">10.440,0</td>
+<td class="py-3.5 px-4 text-right text-[#3B82F6] text-base">84,3</td>
+</tr>
+</tfoot>
+</table>
+</div>
+</section>
+<!-- 8. REVISÃO DAS 60 QUESTÕES (Acordeão Funcional) -->
+<section class="bg-[#F5F9FB] rounded-xl shadow-sm overflow-hidden flex flex-col transition-all duration-300">
+<div class="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<span class="font-label-sm text-label-sm uppercase font-bold tracking-wider text-[#64748B]">GABARITO COMENTADO</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-[#14213D]">Revisão das 60 questões</h2>
+</div>
+<button class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#E2E8EE] hover:bg-secondary-container text-on-secondary-container font-label-md text-label-md font-semibold transition-colors" id="btn-toggle-review" onclick="toggleReviewAccordion()">
+<span class="material-symbols-outlined text-[18px]" id="review-icon">grid_view</span>
+<span id="review-btn-text">Mostrar revisão</span>
+</button>
+</div>
+<!-- Conteúdo Expansível da Revisão -->
+<div class="hidden px-6 pb-6 pt-2" id="review-container">
+<div class="p-4 bg-[#F0F5F8] rounded-lg mb-4 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-[#64748B]">Exibindo itens da bateria avaliativa e justificativas psicométricas:</span>
+<div class="flex items-center gap-4 font-label-sm text-label-sm">
+<span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-primary"></span> 54 Corretas</span>
+<span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-error"></span> 6 Incorretas</span>
+</div>
+</div>
+<!-- Grade de Questões (Amostra de itens detalhados com lógica completa) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="questions-list">
+<!-- Item 1 -->
+<div class="bg-[#EAF1F5] rounded-xl p-4 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-[#14213D]">Questão 01 • Sequências numéricas</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-[#D8E2FF] text-[#0058BE]">Correta</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#14213D]">Identifique o próximo elemento da progressão: 3, 7, 15, 31, 63, ...</p>
+<div class="text-[12px] text-[#64748B] flex justify-between pt-1 border-t border-[#CBD5E1]/40">
+<span>Sua resposta: <strong>127</strong> (Gabarito: 127)</span>
+<span>Tempo: 18,2s</span>
+</div>
+<p class="text-[11px] text-[#525E7D] italic">Lógica: Fórmula recursiva an = 2(an-1) + 1. Mede raciocínio indutivo veloz.</p>
+</div>
+<!-- Item 2 -->
+<div class="bg-[#EAF1F5] rounded-xl p-4 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-[#14213D]">Questão 14 • Padrões/matrizes</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-[#FFDAD6] text-[#BA1A1A]">Incorreta</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#14213D]">Rotação isométrica de polígono 3x3 no plano cartesiano inverso.</p>
+<div class="text-[12px] text-[#64748B] flex justify-between pt-1 border-t border-[#CBD5E1]/40">
+<span>Sua resposta: <strong>Opção D</strong> (Gabarito: Opção B)</span>
+<span>Tempo: 41,5s</span>
+</div>
+<p class="text-[11px] text-[#525E7D] italic">Análise: Inversão simétrica sobreposta ao invés de rotação anti-horária de 90°.</p>
+</div>
+<!-- Item 3 -->
+<div class="bg-[#EAF1F5] rounded-xl p-4 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-[#14213D]">Questão 28 • Analogias</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-[#D8E2FF] text-[#0058BE]">Correta</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#14213D]">Círculo está para Esfera assim como Quadrado está para: ...</p>
+<div class="text-[12px] text-[#64748B] flex justify-between pt-1 border-t border-[#CBD5E1]/40">
+<span>Sua resposta: <strong>Cubo</strong> (Gabarito: Cubo)</span>
+<span>Tempo: 12,1s</span>
+</div>
+<p class="text-[11px] text-[#525E7D] italic">Lógica: Extrapolação dimensional bidimensional para tridimensional equivalente.</p>
+</div>
+<!-- Item 4 -->
+<div class="bg-[#EAF1F5] rounded-xl p-4 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-[#14213D]">Questão 39 • Lógica dedutiva</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-[#FFDAD6] text-[#BA1A1A]">Incorreta</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#14213D]">Silogismo condicional com premissas distributivas restritivas.</p>
+<div class="text-[12px] text-[#64748B] flex justify-between pt-1 border-t border-[#CBD5E1]/40">
+<span>Sua resposta: <strong>Nenhum A é C</strong> (Gabarito: Alguns B são C)</span>
+<span>Tempo: 58,0s</span>
+</div>
+<p class="text-[11px] text-[#525E7D] italic">Análise: Falácia de premissa menor não-distribuída com inversão de quantificador.</p>
+</div>
+<!-- Item 5 -->
+<div class="bg-[#EAF1F5] rounded-xl p-4 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-[#14213D]">Questão 48 • Raciocínio espacial</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-[#FFDAD6] text-[#BA1A1A]">Incorreta</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#14213D]">Planificação e rebatimento de icosaedro truncado.</p>
+<div class="text-[12px] text-[#64748B] flex justify-between pt-1 border-t border-[#CBD5E1]/40">
+<span>Sua resposta: <strong>Figura 3</strong> (Gabarito: Figura 5)</span>
+<span>Tempo: 52,4s</span>
+</div>
+<p class="text-[11px] text-[#525E7D] italic">Análise: Vértice de oposição colateral foi confundido na rotação transversal.</p>
+</div>
+<!-- Item 6 -->
+<div class="bg-[#EAF1F5] rounded-xl p-4 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-[#14213D]">Questão 60 • Desafios mistos</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-[#D8E2FF] text-[#0058BE]">Correta</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#14213D]">Integração analítica de matriz semântica e probabilidade condicional.</p>
+<div class="text-[12px] text-[#64748B] flex justify-between pt-1 border-t border-[#CBD5E1]/40">
+<span>Sua resposta: <strong>1/8</strong> (Gabarito: 1/8)</span>
+<span>Tempo: 34,9s</span>
+</div>
+<p class="text-[11px] text-[#525E7D] italic">Lógica: Resolução precisa sob restrição temporal no limiar final da bateria.</p>
+</div>
+</div>
+<div class="mt-4 text-center">
+<span class="font-label-sm text-label-sm text-[#64748B] italic">Mostrando amostra detalhada dos 60 itens com registros biométricos de tempo salvos.</span>
+</div>
+</div>
+</section>
+<!-- 9. AVISO FINAL METODOLÓGICO -->
+<footer class="pt-2 pb-6">
+<div class="p-4 rounded-xl bg-[#F5F9FB] flex items-center justify-center gap-3 text-center max-w-3xl mx-auto shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0">info</span>
+<p class="font-body-sm text-body-sm text-[#64748B]">
+            Esta é uma avaliação cognitiva com fins educacionais e de autoconhecimento. A pontuação de desempenho não é um diagnóstico psicológico e o teste não é equivalente a instrumentos padronizados.
+          </p>
+</div>
+</footer>
+</div>
+</div>
+<!-- SCRIPT DE INTERATIVIDADE E BACKEND MOCK -->
+<script>
+    // Paleta cromática elegante e distinta para as 8 categorias
+    const CATEGORIES_DATA = [
+      { name: 'Sequências numéricas', short: 'Sequências', score: 90.7, points: 1632.6, max: 1800.0, color: '#0058BE', labelColor: 'bg-[#0058BE]' },       // Azul Safira
+      { name: 'Padrões/matrizes',       short: 'Matrizes',    score: 82.5, points: 1782.0, max: 2160.0, color: '#4F46E5', labelColor: 'bg-[#4F46E5]' },       // Índigo Profundo
+      { name: 'Analogias',              short: 'Analogias',   score: 91.0, points: 982.8,  max: 1080.0, color: '#0284C7', labelColor: 'bg-[#0284C7]' },       // Azul Celeste Vibrante
+      { name: 'Lógica dedutiva',        short: 'Lógica',      score: 79.4, points: 1143.4, max: 1440.0, color: '#7C3AED', labelColor: 'bg-[#7C3AED]' },       // Violeta Nobre
+      { name: 'Raciocínio espacial',    short: 'Espacial',    score: 85.0, points: 1224.0, max: 1440.0, color: '#0D9488', labelColor: 'bg-[#0D9488]' },       // Teal / Ciano Marinho
+      { name: 'Classificação',          short: 'Classif.',    score: 94.1, points: 846.9,  max: 900.0,  color: '#2563EB', labelColor: 'bg-[#2563EB]' },       // Cobalto Real
+      { name: 'Quantitativo',           short: 'Quantitativo',score: 76.8, points: 691.2,  max: 900.0,  color: '#9333EA', labelColor: 'bg-[#9333EA]' },       // Púrpura Orquídea
+      { name: 'Desafios mistos',        short: 'Mistos',      score: 86.5, points: 934.2,  max: 1080.0, color: '#3B82F6', labelColor: 'bg-[#3B82F6]' }        // Azul Primário Brilhante
+    ];
+
+    // Renderizador do gráfico de barras com cores individuais por categoria
+    function renderBarChart() {
+      const container = document.getElementById('chart-view-bar');
+      if (!container) return;
+
+      const maxScore = 100;
+      const chartHeight = 220; // altura útil
+      const startY = 30;
+      const baselineY = 240;
+
+      // Montagem de SVG responsivo
+      let svgBars = '';
+      const totalBars = CATEGORIES_DATA.length;
+      const barWidth = 44;
+      const gap = 52;
+      const totalWidth = 880;
+      const startX = 70;
+
+      CATEGORIES_DATA.forEach((cat, idx) => {
+        const x = startX + idx * (barWidth + gap);
+        const barH = (cat.score / maxScore) * (baselineY - startY);
+        const y = baselineY - barH;
+
+        svgBars += `
+          <g class="group cursor-pointer transition-all duration-300">
+            <!-- Barra individual colorida com cantos arredondados -->
+            <rect x="${x}" y="${y}" width="${barWidth}" height="${barH}" rx="6" fill="${cat.color}" opacity="0.92"
+                  class="transition-all duration-200 hover:opacity-100 hover:filter hover:drop-shadow-md">
+              <title>${cat.name}: ${cat.score}% normalizado (${cat.points} pts)</title>
+            </rect>
+            <!-- Rótulo de porcentagem acima da barra -->
+            <text x="${x + barWidth / 2}" y="${y - 8}" fill="#14213D" font-family="Inter" font-size="11" font-weight="700" text-anchor="middle">
+              ${cat.score.toFixed(1).replace('.', ',')}%
+            </text>
+            <!-- Rótulo da categoria no eixo X -->
+            <text x="${x + barWidth / 2}" y="${baselineY + 18}" fill="#525E7D" font-family="Inter" font-size="10.5" font-weight="600" text-anchor="middle">
+              ${cat.short}
+            </text>
+          </g>
+        `;
+      });
+
+      container.innerHTML = `
+        <svg class="w-full h-72 overflow-visible" preserveAspectRatio="none" viewBox="0 0 880 270">
+          <!-- Grid Horizontal com percentuais -->
+          <line x1="40" y1="30" x2="860" y2="30" stroke="#CBD5E1" stroke-dasharray="3 3" stroke-width="1"></line>
+          <text x="32" y="34" fill="#64748B" font-family="Inter" font-size="10" text-anchor="end">100%</text>
+
+          <line x1="40" y1="82" x2="860" y2="82" stroke="#CBD5E1" stroke-dasharray="3 3" stroke-width="1"></line>
+          <text x="32" y="86" fill="#64748B" font-family="Inter" font-size="10" text-anchor="end">75%</text>
+
+          <line x1="40" y1="135" x2="860" y2="135" stroke="#CBD5E1" stroke-dasharray="3 3" stroke-width="1"></line>
+          <text x="32" y="139" fill="#64748B" font-family="Inter" font-size="10" text-anchor="end">50%</text>
+
+          <line x1="40" y1="187" x2="860" y2="187" stroke="#CBD5E1" stroke-dasharray="3 3" stroke-width="1"></line>
+          <text x="32" y="191" fill="#64748B" font-family="Inter" font-size="10" text-anchor="end">25%</text>
+
+          <line x1="40" y1="${baselineY}" x2="860" y2="${baselineY}" stroke="#94A3B8" stroke-width="1.2"></line>
+          <text x="32" y="${baselineY + 4}" fill="#64748B" font-family="Inter" font-size="10" text-anchor="end">0%</text>
+
+          ${svgBars}
+        </svg>
+      `;
+    }
+
+    // Renderizador do gráfico de Pizza com fatias multicoloridas e legenda interativa detalhada
+    function renderPieChart() {
+      const container = document.getElementById('chart-view-pie');
+      if (!container) return;
+
+      const totalPoints = CATEGORIES_DATA.reduce((acc, c) => acc + c.points, 0);
+      const radius = 70;
+      const circumference = 2 * Math.PI * radius; // ~439.82
+
+      let cumulativePercent = 0;
+      let svgSegments = '';
+
+      CATEGORIES_DATA.forEach((cat) => {
+        const percent = cat.points / totalPoints;
+        const strokeDasharray = `${percent * circumference} ${circumference}`;
+        const strokeDashoffset = -cumulativePercent * circumference;
+
+        svgSegments += `
+          <circle cx="100" cy="100" r="${radius}" fill="transparent"
+                  stroke="${cat.color}" stroke-width="26"
+                  stroke-dasharray="${strokeDasharray}"
+                  stroke-dashoffset="${strokeDashoffset}"
+                  transform="rotate(-90 100 100)"
+                  class="transition-all duration-300 hover:opacity-85 cursor-pointer">
+            <title>${cat.name}: ${(percent * 100).toFixed(1)}% (${cat.points} pts)</title>
+          </circle>
+        `;
+        cumulativePercent += percent;
+      });
+
+      // Montagem da grade da legenda
+      let legendItems = '';
+      CATEGORIES_DATA.forEach((cat) => {
+        const sharePercent = ((cat.points / totalPoints) * 100).toFixed(1).replace('.', ',');
+        legendItems += `
+          <div class="flex items-center justify-between gap-3 p-1.5 rounded-lg hover:bg-[#E2E8EE]/40 transition-colors">
+            <div class="flex items-center gap-2 min-w-0">
+              <span class="w-3.5 h-3.5 rounded-full shrink-0 shadow-sm" style="background-color: ${cat.color};"></span>
+              <span class="font-body-sm text-body-sm text-[#14213D] font-medium truncate">${cat.name}</span>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="font-label-sm text-label-sm font-bold text-[#14213D]">${sharePercent}%</span>
+              <span class="font-label-sm text-label-sm text-[#64748B]">(${cat.points.toFixed(0)} pts)</span>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = `
+        <div class="flex flex-col items-center shrink-0">
+          <svg class="w-56 h-56 drop-shadow-sm" viewBox="0 0 200 200">
+            <!-- Anel de Fundo -->
+            <circle cx="100" cy="100" r="${radius}" fill="transparent" stroke="#E2E8EE" stroke-width="26"></circle>
+            <!-- Fatias Coloridas -->
+            ${svgSegments}
+            <!-- Texto Central -->
+            <text x="100" y="96" fill="#14213D" font-family="Inter" font-size="19" font-weight="800" text-anchor="middle">8.803</text>
+            <text x="100" y="114" fill="#64748B" font-family="Inter" font-size="11" font-weight="500" text-anchor="middle">Pontos Totais</text>
+          </svg>
+          <span class="font-label-sm text-label-sm text-[#64748B] mt-2 font-medium">Distribuição por Categoria</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1 w-full max-w-xl bg-[#EAF1F5] p-3.5 rounded-xl">
+          ${legendItems}
+        </div>
+      `;
+    }
+
+    // Alternância de Gráficos (Linha, Barras, Pizza)
+    function setChartType(type) {
+      const lineView = document.getElementById('chart-view-line');
+      const barView = document.getElementById('chart-view-bar');
+      const pieView = document.getElementById('chart-view-pie');
+
+      const btnLine = document.getElementById('btn-chart-line');
+      const btnBar = document.getElementById('btn-chart-bar');
+      const btnPie = document.getElementById('btn-chart-pie');
+
+      const chartTitle = document.getElementById('chart-main-title');
+      const captionText = document.getElementById('chart-caption-text');
+
+      // Reset botões
+      [btnLine, btnBar, btnPie].forEach(btn => {
+        btn.className = 'px-3.5 py-1.5 rounded-md font-label-md text-label-md font-semibold transition-colors text-on-surface-variant hover:text-on-surface';
+      });
+
+      // Esconder todas views
+      lineView.classList.add('hidden');
+      lineView.classList.remove('flex');
+      barView.classList.add('hidden');
+      barView.classList.remove('flex');
+      pieView.classList.add('hidden');
+      pieView.classList.remove('flex');
+
+      if (type === 'line') {
+        lineView.classList.remove('hidden');
+        lineView.classList.add('flex');
+        btnLine.className = 'px-3.5 py-1.5 rounded-md font-label-md text-label-md font-semibold transition-colors bg-[#3B82F6] text-white';
+        if (chartTitle) chartTitle.textContent = 'Evolução do desempenho acumulado';
+        if (captionText) captionText.textContent = 'Após cada questão: pontos acumulados ÷ pontos máximos acumulados × 100. Pontos vermelhos indicam respostas incorretas. A curva de distribuição de QI só é exibida quando houver parâmetros normativos calibrados.';
+      } else if (type === 'bar') {
+        renderBarChart();
+        barView.classList.remove('hidden');
+        barView.classList.add('flex');
+        btnBar.className = 'px-3.5 py-1.5 rounded-md font-label-md text-label-md font-semibold transition-colors bg-[#3B82F6] text-white';
+        if (chartTitle) chartTitle.textContent = 'Desempenho normalizado por categoria psicométrica';
+        if (captionText) captionText.textContent = 'Pontuação normalizada de 0 a 100% para cada dimensão cognitiva avaliada. Cores exclusivas para cada categoria para facilitar a correlação psicométrica visual.';
+      } else if (type === 'pie') {
+        renderPieChart();
+        pieView.classList.remove('hidden');
+        pieView.classList.add('flex');
+        btnPie.className = 'px-3.5 py-1.5 rounded-md font-label-md text-label-md font-semibold transition-colors bg-[#3B82F6] text-white';
+        if (chartTitle) chartTitle.textContent = 'Composição proporcional de pontos por dimensão';
+        if (captionText) captionText.textContent = 'Distribuição percentual dos 8.803 pontos obtidos entre as 8 categorias da bateria com paleta de cores diferenciada e contrastante.';
+      }
+    }
+
+    // Alternar visualização da revisão das questões
+    function toggleReviewAccordion() {
+      const container = document.getElementById('review-container');
+      const btnText = document.getElementById('review-btn-text');
+      const icon = document.getElementById('review-icon');
+
+      const isHidden = container.classList.contains('hidden');
+
+      if (isHidden) {
+        container.classList.remove('hidden');
+        btnText.textContent = 'Ocultar revisão';
+        icon.textContent = 'expand_less';
+      } else {
+        container.classList.add('hidden');
+        btnText.textContent = 'Mostrar revisão';
+        icon.textContent = 'grid_view';
+      }
+    }
+
+    // Carregamento inicial de mock de sessão ou localStorage se existente
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        const savedAttempt = localStorage.getItem('neurometric_last_attempt');
+        if (savedAttempt) {
+          const data = JSON.parse(savedAttempt);
+          if (data.attemptNumber) document.getElementById('attempt-number').textContent = data.attemptNumber;
+          if (data.score) document.getElementById('score-val').textContent = data.score;
+        }
+      } catch (e) {
+        // Fallback silencioso mantendo os valores pré-renderizados
+      }
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-low mt-auto"><div class="max-w-7xl mx-auto px-6 lg:px-12 py-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md"><p class="font-body-sm text-body-sm text-on-surface-variant text-center md:text-left max-w-2xl">Esta avaliação possui finalidade educacional e de autoconhecimento. A pontuação apresentada não equivale a um diagnóstico psicológico.</p><div class="flex items-center gap-space-lg"><span class="font-label-sm text-label-sm text-outline">© 2025 NeuroMetric Cognitive Diagnostics.</span></div></div></footer></body></html>

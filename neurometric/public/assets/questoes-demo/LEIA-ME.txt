@@ -1,0 +1,2 @@
+Figuras geométricas genéricas usadas SOMENTE pelo banco fictício de testes (tests/fixtures/banco-ficticio.json).
+Não fazem parte do banco real. Podem ser apagadas sem afetar o site.

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--
+  NeuroMetric — Iniciar teste
+  Origem: tela "Iniciar teste" do Google Stitch (docs/stitch-original/iniciar-teste-original.html).
+  Mudanças em relação ao original:
+    - Tailwind CDN e estilos inline substituídos pelo style.css externo (mesmos valores);
+    - textos atualizados para a avaliação de 10 questões, sem limite de tempo;
+    - quantidade de questões e habilidades vêm do servidor (/api/teste/info);
+    - o botão inicia (ou retoma) a tentativa de verdade no back-end.
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar teste — NeuroMetric</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page site-body start-page">
+  <!-- Cabeçalho fixo -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="site-header__left">
+        <a class="site-brand" href="index.html">
+          <span class="brand-mark brand-mark--sm">
+            <span class="material-symbols-outlined icon-base">psychology</span>
+          </span>
+          <span class="site-brand__text">
+            <span class="site-brand__name">NeuroMetric</span>
+            <span class="site-brand__sub">Cognitive Lab</span>
+          </span>
+        </a>
+        <nav class="site-nav" aria-label="Navegação principal">
+          <a class="site-nav__link" href="index.html">Início</a>
+          <a class="site-nav__link" href="index.html#metodologia">Sobre o teste</a>
+          <a class="site-nav__link is-active" href="iniciar-teste.html" aria-current="page">Iniciar teste</a>
+          <a class="site-nav__link" href="index.html#aviso">Outras informações</a>
+        </nav>
+      </div>
+      <div class="site-header__right">
+        <div class="server-pill">
+          <span class="dot dot-8 dot-primary anim-pulse"></span>
+          <span>Servidor Ativo • v3.8</span>
+        </div>
+        <a class="btn-header" href="login.html" data-auth-button>Entrar</a>
+        <div class="avatar" data-avatar title="Visitante">
+          <span class="material-symbols-outlined icon-18">person</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div class="start-wrap">
+      <div class="start-column">
+        <!-- Selo superior -->
+        <div class="start-pill">
+          <span class="start-pill__dot"></span>
+          <span class="start-pill__text">Avaliação cognitiva • <span data-total>10</span> questões</span>
+        </div>
+
+        <!-- Título -->
+        <h1 class="start-title">
+          <span class="start-title__line">Inicie o teste para descobrir o seu</span><br>
+          <span class="start-title__qi">QI</span>
+        </h1>
+
+        <!-- Botão de ação -->
+        <div class="start-cta">
+          <button class="btn-start" id="btn-start-quiz" type="button">
+            <span>Iniciar Quiz</span>
+            <span class="material-symbols-outlined icon-20">arrow_forward</span>
+          </button>
+          <span class="start-hint" id="start-hint" hidden></span>
+        </div>
+
+        <!-- Indicadores -->
+        <div class="start-stats">
+          <div class="start-stat">
+            <span class="start-stat__value" data-total>10</span>
+            <span class="start-stat__label">Questões</span>
+          </div>
+          <div class="start-stat">
+            <span class="start-stat__value">Livre</span>
+            <span class="start-stat__label">Sem limite de tempo</span>
+          </div>
+        </div>
+
+        <!-- Aviso quando o banco de questões não está instalado -->
+        <div class="alert alert--banner alert--error start-notice" id="bank-missing" role="alert" hidden>
+          <span class="material-symbols-outlined icon-18">error</span>
+          <span>O banco de questões ainda não foi instalado no servidor. Consulte data/LEIA-ME.md.</span>
+        </div>
+
+        <!-- Card "Antes de começar" -->
+        <div class="start-card">
+          <h2 class="start-card__title">
+            <span class="material-symbols-outlined icon-18 icon-blue">info</span>
+            Antes de começar
+          </h2>
+          <ul class="start-card__list">
+            <li class="start-card__item">
+              <span class="material-symbols-outlined icon-18 icon-blue">check</span>
+              <span>Responda às <span data-total>10</span> questões com atenção.</span>
+            </li>
+            <li class="start-card__item">
+              <span class="material-symbols-outlined icon-18 icon-blue">check</span>
+              <span>O tempo de resposta de cada questão será registrado.</span>
+            </li>
+            <li class="start-card__item">
+              <span class="material-symbols-outlined icon-18 icon-blue">check</span>
+              <span>Procure realizar o teste em um ambiente sem interrupções.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Habilidades avaliadas (vindas do banco de questões) -->
+        <div class="start-skills" id="skills" hidden>
+          <span class="start-skills__label"><span id="skills-count">0</span> habilidades avaliadas</span>
+          <div class="chip-list" id="skills-list"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="simple-footer">
+    <div class="simple-footer__inner">
+      <span>NeuroMetric Cognitive Lab • Esta avaliação possui finalidade educacional e de autoconhecimento.</span>
+      <div class="simple-footer__links">
+        <a href="termos.html#privacidade">Privacidade</a>
+        <span>•</span>
+        <a href="termos.html">Termos</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/iniciar.js"></script>
+</body>
+</html>

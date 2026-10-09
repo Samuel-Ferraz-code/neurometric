@@ -1,0 +1,24 @@
+{
+  "name": "neurometric",
+  "version": "1.0.0",
+  "description": "NeuroMetric — Cognitive Lab: avaliação cognitiva educacional com front-end do Google Stitch e back-end Node.js/Express/SQLite",
+  "main": "src/server.js",
+  "private": true,
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test --test-concurrency=1 \"tests/*.test.js\"",
+    "validar-banco": "node scripts/validar-banco.js",
+    "demo": "node scripts/demo.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "optionalDependencies": {
+    "@node-rs/argon2": "^2.0.2"
+  }
+}

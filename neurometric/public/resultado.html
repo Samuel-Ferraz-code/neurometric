@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<!--
+  NeuroMetric — Resultados da avaliação
+  Origem: tela de resultados do Google Stitch (docs/stitch-original/resultado-original.html).
+  Mudanças em relação ao original:
+    - Tailwind CDN, <style> interno e estilos inline substituídos pelo style.css externo;
+    - todos os números fictícios foram removidos: os valores vêm de GET /api/tentativas/:id/resultado;
+    - adaptado à avaliação de 10 questões (sem bônus de rapidez e sem limite de tempo);
+    - gráfico de barras = tempo por questão; gráfico de pizza = acertos, erros e não respondidas;
+    - revisão com as 10 questões em cartões expansíveis e histórico de tentativas.
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seu resultado — NeuroMetric</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page">
+  <!-- Cabeçalho da tela de resultados -->
+  <header class="results-header">
+    <div class="results-header__inner">
+      <div class="site-header__left">
+        <a class="site-brand" href="index.html">
+          <span class="results-brand__mark">
+            <span class="material-symbols-outlined icon-20">psychology</span>
+          </span>
+          <span class="site-brand__text">
+            <span class="results-brand__name">NeuroMetric</span>
+            <span class="results-brand__sub">Cognitive Diagnostics</span>
+          </span>
+        </a>
+        <nav class="results-nav" aria-label="Navegação principal">
+          <a href="index.html">Início</a>
+          <a href="index.html#metodologia">Sobre o teste</a>
+          <a href="iniciar-teste.html">Iniciar teste</a>
+          <a href="index.html#aviso">Outras informações</a>
+        </nav>
+      </div>
+      <div class="site-header__right">
+        <div class="results-pill">
+          <span class="dot dot-8 dot-primary anim-pulse"></span>
+          <span>Servidor Ativo • v4.2</span>
+        </div>
+        <a class="results-logout" href="#" id="btn-logout">Sair</a>
+        <div class="avatar" data-avatar>
+          <span class="material-symbols-outlined icon-18">person</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="results-main">
+    <div class="results-canvas">
+      <div class="results-stack">
+
+        <!-- Carregando / sem resultado -->
+        <section class="panel results-empty" id="results-state">
+          <span class="material-symbols-outlined icon-26 anim-spin" id="results-state-icon">progress_activity</span>
+          <p id="results-state-text">Carregando seu resultado...</p>
+          <a class="btn-primary" id="results-state-action" href="iniciar-teste.html" hidden>Iniciar avaliação</a>
+        </section>
+
+        <div class="results-stack results-content" id="results-content" hidden>
+
+          <!-- 1. Cabeçalho do resultado -->
+          <section class="results-intro">
+            <span class="results-tag">
+              <span class="dot dot-6 dot-primary"></span>
+              <span>Resultado da avaliação cognitiva • Tentativa #<span id="attempt-number">–</span></span>
+            </span>
+            <div class="results-intro__row">
+              <div>
+                <h1 class="results-title">Seu resultado</h1>
+                <p class="results-date">
+                  <span id="completion-label">Concluído em</span>
+                  <strong id="completion-date">–</strong> às <strong id="completion-time">–</strong>
+                </p>
+              </div>
+              <a class="btn-primary" id="btn-new-test" href="iniciar-teste.html">
+                <span class="material-symbols-outlined icon-18">replay</span>
+                <span>Novo teste</span>
+              </a>
+            </div>
+          </section>
+
+          <!-- 2. Pontuação principal -->
+          <section class="panel">
+            <div class="score-grid">
+              <div class="score-main">
+                <div>
+                  <span class="eyebrow">Pontuação de desempenho</span>
+                  <div class="score-value">
+                    <span class="score-value__number" id="score-val">–</span>
+                    <span class="score-value__max">/ 100</span>
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill" id="score-bar"></div>
+                  </div>
+                </div>
+                <p class="score-note">
+                  Aproveitamento nas <span data-total>10</span> questões: S = 100 × (pontos obtidos ÷ pontos máximos),
+                  ou seja, (acertos ÷ <span data-total>10</span>) × 100. Questões não respondidas valem 0.
+                  O tempo é registrado, mas não altera a pontuação.
+                </p>
+              </div>
+              <div class="iq-box">
+                <div class="iq-box__head">
+                  <span class="iq-box__label">QI estimado</span>
+                  <span class="material-symbols-outlined icon-20 icon-blue">science</span>
+                </div>
+                <div class="iq-value" id="iq-value" hidden></div>
+                <div>
+                  <span class="iq-status" id="iq-status">
+                    <span class="dot dot-8 dot-primary anim-ping"></span>
+                    <span id="iq-status-text">Aguardando amostra de referência</span>
+                  </span>
+                </div>
+                <p class="text-body-sm" id="iq-reason">
+                  Seu resultado ainda não foi convertido para uma escala de QI porque não existe uma amostra normativa válida.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 3. Oito cartões de estatística -->
+          <section class="stat-grid" id="stat-grid" aria-label="Resumo da avaliação"></section>
+
+          <!-- 4. Gráfico com seletor -->
+          <section class="panel chart-panel">
+            <div class="chart-panel__head">
+              <div>
+                <span class="eyebrow">Visualização</span>
+                <h2 class="panel-title" id="chart-main-title">Evolução do desempenho acumulado</h2>
+              </div>
+              <div class="segmented" role="tablist" aria-label="Tipo de gráfico">
+                <button class="is-active" type="button" data-chart="line" role="tab">Linha</button>
+                <button type="button" data-chart="bar" role="tab">Barras</button>
+                <button type="button" data-chart="pie" role="tab">Pizza</button>
+              </div>
+            </div>
+            <div class="chart-area" id="chart-area"></div>
+            <p class="chart-caption" id="chart-caption-text"></p>
+          </section>
+
+          <!-- 5. Mapa cognitivo por categoria -->
+          <section class="section-stack">
+            <div class="section-stack__head">
+              <div>
+                <span class="eyebrow">Resultado por categoria</span>
+                <h2 class="panel-title">Mapa cognitivo</h2>
+              </div>
+              <span class="label-sm">Desempenho normalizado = pontos obtidos ÷ pontos máximos da categoria × 100</span>
+            </div>
+            <div class="category-grid" id="category-grid"></div>
+          </section>
+
+          <!-- 6. Tabela por categoria -->
+          <section class="panel">
+            <div class="table-head">
+              <span class="eyebrow">Detalhamento estruturado</span>
+              <h2 class="panel-title">Desempenho por categoria</h2>
+            </div>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Categoria</th>
+                    <th class="num">Questões</th>
+                    <th class="num">Acertos</th>
+                    <th class="num">Erros</th>
+                    <th class="num">Em branco</th>
+                    <th class="num">Precisão</th>
+                    <th class="right">Tempo total</th>
+                    <th class="right">Tempo médio</th>
+                    <th class="right">Normalizado</th>
+                  </tr>
+                </thead>
+                <tbody id="category-rows"></tbody>
+                <tfoot id="category-total"></tfoot>
+              </table>
+            </div>
+          </section>
+
+          <!-- 7. Revisão comentada das questões -->
+          <section class="panel">
+            <div class="review-head">
+              <div>
+                <span class="eyebrow">Gabarito comentado</span>
+                <h2 class="panel-title">Revisão das <span data-total>10</span> questões</h2>
+              </div>
+              <button class="btn-soft" id="btn-toggle-review" type="button" aria-expanded="false" aria-controls="review-container">
+                <span class="material-symbols-outlined icon-18" id="review-icon">grid_view</span>
+                <span id="review-btn-text">Mostrar revisão</span>
+              </button>
+            </div>
+            <div class="review-body" id="review-container" hidden>
+              <div class="review-summary">
+                <span class="text-body-sm">Clique em uma questão para ver as alternativas, a resposta correta e a explicação.</span>
+                <div class="review-summary__legend">
+                  <span><span class="dot-10 bg-primary"></span> <span id="legend-ok">0</span> Corretas</span>
+                  <span><span class="dot-10 bg-error"></span> <span id="legend-bad">0</span> Incorretas</span>
+                  <span><span class="dot-10 bg-muted"></span> <span id="legend-none">0</span> Em branco</span>
+                </div>
+              </div>
+              <div class="review-list" id="questions-list"></div>
+            </div>
+          </section>
+
+          <!-- 8. Histórico de tentativas -->
+          <section class="panel" id="history">
+            <div class="table-head">
+              <span class="eyebrow">Suas avaliações</span>
+              <h2 class="panel-title">Histórico de tentativas</h2>
+            </div>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Tentativa</th>
+                    <th>Data</th>
+                    <th>Situação</th>
+                    <th class="num">Acertos</th>
+                    <th class="num">Pontuação</th>
+                    <th class="right">Tempo total</th>
+                    <th class="right">Resultado</th>
+                  </tr>
+                </thead>
+                <tbody id="history-rows"></tbody>
+              </table>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- 9. Aviso metodológico -->
+        <footer class="results-note">
+          <div class="results-note__box">
+            <span class="material-symbols-outlined icon-20 text-secondary">info</span>
+            <p class="text-body-sm">
+              Esta é uma avaliação cognitiva com fins educacionais e de autoconhecimento. A pontuação de desempenho
+              não é um diagnóstico psicológico e o teste não é equivalente a instrumentos padronizados.
+            </p>
+          </div>
+        </footer>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/resultado.js"></script>
+</body>
+</html>

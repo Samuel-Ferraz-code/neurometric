@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!--
+  NeuroMetric — Criar conta (cadastro)
+  Origem: tela "Criar Conta" exportada do Google Stitch (docs/stitch-original/cadastro-original.html).
+  Mudanças em relação ao original:
+    - Tailwind CDN e <style> interno substituídos pelo style.css externo (mesmos valores);
+    - eventos inline movidos para js/auth.js; o envio cria a conta de verdade no servidor;
+    - a aba "Entrar" navega para login.html.
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar conta — NeuroMetric</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page auth-page">
+  <main class="auth-main">
+    <div class="auth-stage">
+      <div class="auth-card--register">
+        <!-- Cabeçalho: logo e selo SSL -->
+        <div class="auth-head auth-head--register">
+          <a class="auth-brand auth-brand--register" href="index.html">
+            <span class="brand-mark brand-mark--glow">
+              <span class="material-symbols-outlined icon-20">psychology</span>
+            </span>
+            <span class="auth-brand__text">
+              <span class="auth-brand__name auth-brand__name--tight">NEUROMETRIC</span>
+              <span class="auth-brand__sub">Psychometrics</span>
+            </span>
+          </a>
+          <div class="ssl-badge ssl-badge--register">
+            <span class="dot dot-6 dot-success anim-pulse"></span>
+            <span>SSL 256-bit</span>
+          </div>
+        </div>
+
+        <!-- Abas -->
+        <div class="auth-tabs auth-tabs--register">
+          <button class="auth-tab" id="tab-login" type="button" data-href="login.html">
+            <span class="material-symbols-outlined icon-18">login</span>
+            <span>Entrar</span>
+          </button>
+          <button class="auth-tab is-active" id="tab-register" type="button" aria-current="page">
+            <span class="material-symbols-outlined icon-18">person_add</span>
+            <span>Criar Conta</span>
+          </button>
+        </div>
+
+        <!-- Aviso de validação (preenchido pelo JavaScript) -->
+        <div class="alert alert--banner alert--error" id="validation-banner" role="alert" hidden>
+          <span class="material-symbols-outlined icon-18">error</span>
+          <span id="validation-banner-text">*Confira suas respostas e preencha todos os campos obrigatórios.</span>
+        </div>
+
+        <!-- Formulário de cadastro -->
+        <div id="register-view">
+          <div class="auth-intro">
+            <h1 class="auth-title auth-title--register">Crie sua conta</h1>
+            <p class="auth-subtitle">Preencha seus dados para iniciar sua avaliação cognitiva.</p>
+          </div>
+
+          <form class="auth-form--register" id="register-form" novalidate>
+            <!-- E-mail -->
+            <div class="field">
+              <label class="field-label field-label--register" for="reg-email">E-mail</label>
+              <div class="field-box">
+                <span class="material-symbols-outlined field-icon field-icon--register">mail</span>
+                <input class="auth-input auth-input--register" id="reg-email" name="email" type="email"
+                       placeholder="Digite seu e-mail" autocomplete="email" required>
+              </div>
+            </div>
+
+            <!-- Nome completo -->
+            <div class="field">
+              <label class="field-label field-label--register" for="reg-name">Nome completo</label>
+              <div class="field-box">
+                <span class="material-symbols-outlined field-icon field-icon--register">person</span>
+                <input class="auth-input auth-input--register" id="reg-name" name="name" type="text"
+                       placeholder="Digite seu nome completo" autocomplete="name" required>
+              </div>
+            </div>
+
+            <!-- Idade e telefone -->
+            <div class="field-row">
+              <div class="field">
+                <label class="field-label field-label--register" for="reg-age">Idade</label>
+                <div class="field-box">
+                  <span class="material-symbols-outlined field-icon field-icon--register">calendar_today</span>
+                  <input class="auth-input auth-input--register" id="reg-age" name="age" type="number"
+                         min="10" max="120" placeholder="Digite sua idade" required>
+                </div>
+              </div>
+              <div class="field">
+                <label class="field-label field-label--register" for="reg-phone">Número de telefone</label>
+                <div class="field-box">
+                  <span class="material-symbols-outlined field-icon field-icon--register">call</span>
+                  <input class="auth-input auth-input--register" id="reg-phone" name="phone" type="tel"
+                         placeholder="(00) 00000-0000" autocomplete="tel">
+                </div>
+              </div>
+            </div>
+
+            <!-- Senha -->
+            <div class="field">
+              <label class="field-label field-label--register" for="reg-password">Senha</label>
+              <div class="field-box">
+                <span class="material-symbols-outlined field-icon field-icon--register">lock</span>
+                <input class="auth-input auth-input--register auth-input--with-eye" id="reg-password" name="password"
+                       type="password" placeholder="Digite sua senha" autocomplete="new-password" required>
+                <button class="eye-toggle eye-toggle--register" type="button" data-toggle-password="reg-password"
+                        aria-label="Mostrar senha">
+                  <span class="material-symbols-outlined icon-20">visibility</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Confirmação da senha -->
+            <div class="field">
+              <label class="field-label field-label--register" for="reg-confirm-password">Confirme sua senha</label>
+              <div class="field-box">
+                <span class="material-symbols-outlined field-icon field-icon--register">lock_reset</span>
+                <input class="auth-input auth-input--register auth-input--with-eye" id="reg-confirm-password"
+                       name="confirmPassword" type="password" placeholder="Digite sua senha novamente"
+                       autocomplete="new-password" required>
+                <button class="eye-toggle eye-toggle--register" type="button" data-toggle-password="reg-confirm-password"
+                        aria-label="Mostrar confirmação da senha">
+                  <span class="material-symbols-outlined icon-20">visibility</span>
+                </button>
+              </div>
+              <span class="field-error" id="password-match-error" hidden>
+                <span class="material-symbols-outlined icon-14">cancel</span> As senhas não coincidem.
+              </span>
+            </div>
+
+            <!-- Termos de uso -->
+            <div class="terms">
+              <div class="terms__box">
+                <input class="terms__input" id="terms-checkbox" name="acceptTerms" type="checkbox" required>
+                <span class="material-symbols-outlined terms__check">check</span>
+              </div>
+              <label class="terms__label" for="terms-checkbox">
+                Li e concordo com os <a href="termos.html">Termos de Uso</a> e a <a href="termos.html#privacidade">Política de Privacidade</a>.
+              </label>
+            </div>
+
+            <!-- Botão principal -->
+            <button class="btn-gradient btn-gradient--register" type="submit">
+              <span>Criar conta</span>
+              <span class="material-symbols-outlined icon-18">arrow_forward</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Divisor "OU" -->
+        <div class="divider divider--register">
+          <div class="divider__line"></div>
+          <span class="divider__text">OU</span>
+        </div>
+
+        <!-- Login com Google -->
+        <button class="btn-google btn-google--register" id="btn-google" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"></path>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"></path>
+          </svg>
+          <span>Continuar com Google</span>
+        </button>
+
+        <!-- Alternância de acesso -->
+        <div class="auth-switch auth-switch--register">
+          <p>
+            Já possui uma conta?
+            <a class="auth-switch__link" href="login.html">Entrar</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Rodapé institucional -->
+      <div class="auth-legal auth-legal--register">
+        <span>🔒 Protocolo ISO/IEC 27001</span>
+        <span class="auth-legal__sep">•</span>
+        <span>Avaliação Psicométrica V4.2</span>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
