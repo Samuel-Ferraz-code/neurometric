@@ -92,7 +92,11 @@ function createApp(overrides = {}) {
   app.get(PRIVATE_PAGES, requirePageAuth);
 
   app.use(express.static(config.publicDir, { extensions: ['html'], index: 'index.html' }));
-  app.use((req, res) => res.status(404).sendFile(path.join(config.publicDir, '404.html')));
+  app.use((req, res) => {
+    const notFoundPage = path.join(config.publicDir, '404.html');
+    if (require('node:fs').existsSync(notFoundPage)) return res.status(404).sendFile(notFoundPage);
+    return res.status(404).json({ erro: 'nao_encontrado', mensagem: 'Página não encontrada.' });
+  });
   app.use(errorHandler(logger));
 
   // Limpeza periódica de sessões expiradas.
