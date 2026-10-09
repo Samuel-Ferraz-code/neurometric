@@ -3,6 +3,10 @@
  *   npm run dev   → reinicia sozinho ao salvar arquivos (node --watch)
  *   npm start     → execução normal
  */
+const { applyServerlessDefaults } = require('./vercelDefaults');
+
+applyServerlessDefaults();
+
 const config = require('./config');
 const { createApp } = require('./app');
 const { algorithmInUse } = require('./services/passwordService');
